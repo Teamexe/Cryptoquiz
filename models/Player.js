@@ -18,6 +18,10 @@ module.exports = function(mongoose){
         },
         token:String,
         tokenExpirationDate: Date,
+        points:{
+            type:Number,
+            required:true
+        }
     })
 
     const Players = new mongoose.model("player", Player_schema);

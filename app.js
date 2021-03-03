@@ -73,7 +73,11 @@ app.get("/register",(req,res)=>{
 
 app.get("/quiz",(req,res)=>{
     if(req.session.isLoggedIn){
-        res.render("quiz",{name:req.session.player.playerName});
+        res.render("quiz",{
+            name:req.session.player.playerName,
+            identity:req.session.player.email,
+            csrfToken: req.csrfToken()
+        });
     }
     else{
         req.flash('error3','Please login first');
@@ -137,7 +141,8 @@ app.post('/register', (req,res)=>{
                                 playerName: req.body.playerName,
                                 verified: false,
                                 token: token,
-                                tokenExpirationDate: Date.now() + 3600000 
+                                tokenExpirationDate: Date.now() + 3600000,
+                                points:0 
                             })
                             newPlayer.save()
                             .then(()=>{
@@ -231,23 +236,36 @@ io.on('connect',socket=>{
     renderQuestions(numbers);
     //Listening for answers
     socket.on('answer',data=>{
-        let answers = data.split(' ');
+        let answers = data.answer.split(' '); //Check if the player sends an empty string
         answers = answers.map(x=> x = parseInt(x))
         Question.find({quesNo:{$in:numbers}})
-        .then((data)=>{
+        .then((foundAnswers)=>{
             let flag = true;
-            for(let i=0;i<data.length;i++){
-                if(data[i].ans!=answers[i]){
+            for(let i=0;i<foundAnswers.length;i++){
+                if(foundAnswers[i].ans!=answers[i]){
                     flag = false;
                 }
             }
             if(flag){
                 numbers = numbers.map(x=> x+=4)
-                //Increase the users points, prompt him saying correct answer and prompt others saying someone else submitted
+                Player.findOne({email:data.identity})
+                .then((foundUser)=>{
+                    foundUser.points+=50;
+                    foundUser.save()
+                    .then(()=>{
+                        socket.emit('Submission',true);
+                        // prompt him saying correct answer and prompt others saying someone else submitted
+                        io.emit('elseSubmission');
+                    })
+                    .catch(err=>{
+                        console.log(err)
+                    })
+                })
+                .catch(err=> console.log(err))
                 renderQuestions(numbers);
             }
             else{
-                //Prompt this user for wrong answer
+                socket.emit('Submission',false);
             }
         })
     })
