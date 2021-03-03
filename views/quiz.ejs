@@ -23,9 +23,11 @@
     <div class="navigation-bar">
         <nav class="navbar navbar-light justify-content-between">
             <a class="navbar-brand">Hello <%=name%>,</a>
-            <form class="form-inline">
+            <span style="visibility:hidden" id="identity"><%=identity %></span>
+            <form action="/logout" method="post">
+                <input hidden type="text" name="_csrf" value="<%=csrfToken%>">
                 <a href="#" class="btn btn-primary button lbutton">Leaderboard</a>
-                <a href="#" class="btn btn-primary button lbutton">Logout</a>
+                <button type="submit" class="btn btn-primary button lbutton">Logout</a>
                 <!-- <a href="#" class="btn btn-success">Register</a> -->
             </form>
         </nav>
@@ -157,9 +159,28 @@
 
       submitButton.addEventListener('click',e=>{
         e.preventDefault;
-        let data = document.querySelector('#exampleInputNumber').value;
-        socket.emit('answer',data); //Pass the users info also to give points to him
+        let data1 = document.querySelector('#exampleInputNumber').value;
+        let data2 = document.querySelector('.navbar span').firstChild.nodeValue;
+        let data = {
+          answer:data1,
+          identity:data2
+        }
+        socket.emit('answer',data); 
       })
+
+      socket.on('Submission',value=>{
+        if(value){
+          //Make a dom element whose visibility changes from hidden and it says correct submission
+          console.log('correct submission')
+        }else{
+          console.log('Wrong Submission')
+        }
+      })
+
+      socket.on('elseSubmission',()=>{ //Listening for others submissions
+        console.log('Someone else submitted')
+      })
+
     </script>
 </body>
 

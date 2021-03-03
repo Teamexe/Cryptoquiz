@@ -11,6 +11,9 @@ module.exports = (mongoose)=>{
         ans:{
             type:Number,
             required: true,
+        },
+        reason:{
+            type:String
         }
     })
     const Question = new mongoose.model('question',questionSchema);
