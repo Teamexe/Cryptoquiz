@@ -49,9 +49,11 @@
               <a href="/login" class="link">Login</a>
               <a href="/register" class="link">Register</a>
             <% }else{ %>
-              <form action="/logout"></form>
-              <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
-              <button type="submit" class="link">Logout</a>
+
+              <form action="/logout" method="post">
+                <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
+                <button type="submit" class="link">Logout</a>
+              </form>
             <% } %>  
           </div>
           <div class="menu_icon">
