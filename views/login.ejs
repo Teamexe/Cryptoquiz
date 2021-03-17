@@ -21,11 +21,48 @@
 
 <body>
   <!-- Login page -->
+  <section class="wrapper">
+    <div class="container">
+
+      <div id="scene" class="scene" data-hover-only="false">
+
+
+          <div class="circle" data-depth="1.2"></div>
+
+          <div class="one" data-depth="0.9">
+              <div class="content">
+                  <span class="piece"></span>
+                  <span class="piece"></span>
+                  <span class="piece"></span>
+              </div>
+          </div>
+
+          <div class="two" data-depth="0.60">
+              <div class="content">
+                  <span class="piece"></span>
+                  <span class="piece"></span>
+                  <span class="piece"></span>
+              </div>
+          </div>
+
+          <div class="three" data-depth="0.40">
+              <div class="content">
+                  <span class="piece"></span>
+                  <span class="piece"></span>
+                  <span class="piece"></span>
+              </div>
+          </div>
+      </div>
+
+  </div>
+    <!-- <a href="/quiz" class="btn btn-primary">Quiz</a>-->
+    <img src="Assets/imgs/wave3.png" alt="" class="wave wave1"> 
+  </section>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4 col-sm-4 col-xs-12 form">
         <!-- Form -->
-    <h1 class="main-heading">Login</h1>
+    <h1 class="main-heading">SignIn</h1>
         <form action="/login" method="POST">
             <% if(reg.length>0){ %>
               <div class="mb-3">
@@ -62,8 +99,8 @@
             <label class="form-check-label form-headings" for="exampleCheck1">I know the rules & agree to T&C's</label>
           </div>
           <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
-          <button type="submit" class="btn btn-primary">Login</button>
-          <a href="/register" class="btn btn-success">Register</a>
+          <button type="submit" class="btn btn-primary">SignIn</button>
+          <a href="/register" class="btn btn-success">SignUp</a>
           <div><a href="/" class="return">Return to HomePage</a></div>
         </form>
       </div>
