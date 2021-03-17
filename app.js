@@ -213,9 +213,14 @@ const server = app.listen('3000',()=>{
 })
 
 numbers = [0,1,2,3]; //Initially display first four questions. Later change to question Numbers which are currently live in the quiz
+
+let index = 0;
+
 //Socket io logic
 const io = socketio(server);
 const Question = require('./models/Question')(mongoose)
+const BlockModel = require('./models/blockModel')(mongoose)
+
 io.on('connect',socket=>{
     console.log("Connection made");
     renderQuestions = (questionNumbers)=>{
@@ -241,36 +246,55 @@ io.on('connect',socket=>{
         if(answers.length<4){
             socket.emit("Submission",false);
         }
-        answers = answers.map(x=> x = parseInt(x))
-        Question.find({quesNo:{$in:numbers}})
-        .then((foundAnswers)=>{
-            let flag = true;
-            for(var i=0;i<foundAnswers.length;i++){
-                if(foundAnswers[i].ans!=answers[i]){
-                    flag = false;
+        else{
+            answers = answers.map(x=> x = parseInt(x))
+            Question.find({quesNo:{$in:numbers}}) //check to see if further questions dont exist
+            .then((foundAnswers)=>{
+                let flag = true;
+                for(var i=0;i<foundAnswers.length;i++){
+                    if(foundAnswers[i].ans!=answers[i]){
+                        flag = false;
+                    }
                 }
-            }
-            if(flag){
-                numbers = numbers.map(x=> x+=4)
-                Player.findOne({email:data.identity})
-                .then((foundUser)=>{
-                    foundUser.points+=50;
-                    foundUser.save()
-                    .then(()=>{
-                        socket.emit('Submission',true);
-                        // prompt him saying correct answer and prompt others saying someone else submitted
-                        io.emit('elseSubmission');
+                if(flag){
+                    numbers = numbers.map(x=> x+=4)
+                    index++;
+                    renderQuestions(numbers);
+                    Player.findOne({email:data.identity})
+                    .then((foundUser)=>{
+                        if(foundUser){
+                            foundUser.points+=50;
+                            foundUser.save()
+                            .then(()=>{
+                                // prompt him saying correct answer and prompt others saying someone else submitted
+                                socket.emit('Submission',true);
+                                io.emit('elseSubmission');
+                                const newBlock = new BlockModel({
+                                    index:index,
+                                    name:foundUser.playerName,
+                                    timeStamp:Date.now(),
+                                    email:foundUser.email,
+                                    points:foundUser.points, 
+                                })
+                                newBlock.save()
+                                .then(()=>{
+                                    console.log('Blockchain saved');
+                                })
+                                .catch(err=>{
+                                    console.log(err);
+                                })
+                            })
+                            .catch(err=>{
+                                console.log(err)
+                            })
+                        }
                     })
-                    .catch(err=>{
-                        console.log(err)
-                    })
-                })
-                .catch(err=> console.log(err))
-                renderQuestions(numbers);
-            }
-            else{
-                socket.emit('Submission',false);
-            }
-        })
+                    .catch(err=> console.log(err))
+                }
+                else{
+                    socket.emit('Submission',false);
+                }
+            })
+        }
     })
 })
