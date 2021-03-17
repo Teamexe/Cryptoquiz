@@ -212,12 +212,12 @@ const server = app.listen('3000',()=>{
     console.log("App listening at 3000")
 })
 
+numbers = [0,1,2,3]; //Initially display first four questions. Later change to question Numbers which are currently live in the quiz
 //Socket io logic
 const io = socketio(server);
 const Question = require('./models/Question')(mongoose)
 io.on('connect',socket=>{
     console.log("Connection made");
-    numbers = [0,1,2,3]; //Initially display first four questions. Later change to question Numbers which are currently live in the quiz
     renderQuestions = (questionNumbers)=>{
         Question.find({quesNo:{$in:questionNumbers}})
         .then((data)=>{
