@@ -12,6 +12,7 @@ const flash = require('connect-flash')
 const csrf = require('csurf')
 const mongoStore = require('connect-mongodb-session')(session)
 const socketio = require('socket.io')
+const hash = require('object-hash');
 
 const csrfProtection = csrf({cookie:true});
 
@@ -269,19 +270,35 @@ io.on('connect',socket=>{
                                 // prompt him saying correct answer and prompt others saying someone else submitted
                                 socket.emit('Submission',true);
                                 io.emit('elseSubmission');
-                                const newBlock = new BlockModel({
-                                    index:index,
-                                    name:foundUser.playerName,
-                                    timeStamp:Date.now(),
-                                    email:foundUser.email,
-                                    points:foundUser.points, 
+                                BlockModel.find({}).sort({ _id: -1 }).limit(1)
+                                .then((prevBlock)=>{
+                                    let prevHash;
+                                    if(prevBlock.length>0){
+                                        prevHash = prevBlock[0].hash;
+                                    }
+                                    else{
+                                        prevHash = null;
+                                    }
+                                    let newBlockObject = {
+                                        index:index,
+                                        name:foundUser.playerName,
+                                        timeStamp:Date.now(),
+                                        email:foundUser.email,
+                                        points:foundUser.points, 
+                                        prevHash: prevHash,
+                                    }
+                                    newBlockObject.hash = hash(newBlockObject);
+                                    let newBlock = new BlockModel(newBlockObject);
+                                    newBlock.save()
+                                    .then(()=>{
+                                        console.log('Blockchain saved');
+                                    })
+                                    .catch(err=>{
+                                        console.log(err);
+                                    })
                                 })
-                                newBlock.save()
-                                .then(()=>{
-                                    console.log('Blockchain saved');
-                                })
-                                .catch(err=>{
-                                    console.log(err);
+                                .catch((err)=>{
+                                    console.log(err)
                                 })
                             })
                             .catch(err=>{

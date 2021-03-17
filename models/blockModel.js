@@ -20,16 +20,15 @@ module.exports = (mongoose)=>{
         points:{
             type:Number,
             required:true,
+        },
+        prevHash: {
+            required: false,
+            type: String
+        },
+        hash: {
+            required: true,
+            type:String
         }
-
-        // prevHash: {
-        //     required: false,
-        //     type: String
-        // },
-        // hash: {
-        //     required: true,
-        //     type:String
-        // }
     })
 
     const blockchain = new mongoose.model('blockchain',blockChainSchema);
