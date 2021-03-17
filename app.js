@@ -236,12 +236,16 @@ io.on('connect',socket=>{
     renderQuestions(numbers);
     //Listening for answers
     socket.on('answer',data=>{
-        let answers = data.answer.split(' '); //Check if the player sends an empty string
+        let answers = data.answer.split(' '); 
+        //Check if the player sends an empty string or a string which doesnt have all four answers
+        if(answers.length<4){
+            socket.emit("Submission",false);
+        }
         answers = answers.map(x=> x = parseInt(x))
         Question.find({quesNo:{$in:numbers}})
         .then((foundAnswers)=>{
             let flag = true;
-            for(let i=0;i<foundAnswers.length;i++){
+            for(var i=0;i<foundAnswers.length;i++){
                 if(foundAnswers[i].ans!=answers[i]){
                     flag = false;
                 }
