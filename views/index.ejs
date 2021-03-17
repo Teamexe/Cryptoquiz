@@ -49,6 +49,7 @@
               <a href="/login" class="link">Login</a>
               <a href="/register" class="link">Register</a>
             <% }else{ %>
+              <form action="/logout"></form>
               <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
               <button type="submit" class="link">Logout</a>
             <% } %>  
@@ -104,17 +105,17 @@
       </div>
 
   </div>
-    <!-- <a href="/quiz" class="btn btn-primary">Quiz</a>-->
-    <img src="Assets/imgs/wave3.png" alt="" class="wave wave1"> 
+    <!-- <a href="/quiz" class="btn btn-primary">Quiz</a>
+    <img src="Assets/imgs/wave3.png" alt="" class="wave wave1">  -->
   </section>
   <section class="plain">
     <h1>Hello world</h1>
   </section>
   <section class="gradient sec-3">
-    <img src="Assets/imgs/wave5.png" alt="" class="wave wave2">
+    <img src="Assets/imgs/wave6.png" alt="" class="wave wave2">
 
     <h1 style="padding-top: 150px;">Hello there</h1>
-    <img src="Assets/imgs/wave4.png" alt="" class="wave wave1">
+    <!-- <img src="Assets/imgs/wave4.png" alt="" class="wave wave3"> -->
   </section>
   <section class="plain">
     <h1 style="padding-top: 50px;">Hello there</h1>
