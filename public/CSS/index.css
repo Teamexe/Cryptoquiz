@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,600,700,800,900|Barlow:300,400,500,600,700,800,900&display=swap");
-
-.plain{
-    height: 100vh;
-    background: #fff;
-    color: #000;
-}
 .gradient{
     position: relative;
     background: #695681;
@@ -158,11 +152,14 @@ input,
 body {
   margin: 0;
   padding: 0;
-  list-style: none;
   border: 0;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   color: inherit;
+  scroll-snap-type: y mandatory;
+}
+section{
+  scroll-snap-align: start;
 }
 h1:focus,
 h2:focus,
@@ -250,13 +247,16 @@ nav .menu .menu_links:hover {
   }
 }
 nav .menu .menu_links .link {
-  color: white;
+  color: #fff;
   text-transform: uppercase;
   font-weight: 500;
   margin-right: 50px;
   letter-spacing: 2px;
   position: relative;
   transition: all 0.3s 0.2s ease;
+}
+.logout{
+  background: transparent;
 }
 nav .menu .menu_links .link:last-child {
   margin-right: 0;
@@ -655,8 +655,92 @@ nav .menu .menu_icon:hover .icon:after {
   animation-name: pieceLeft;
   animation-delay: 4.5s;
 }
-
 /*Section1 CSS Ends*/
+
+/*Section 2 Rules*/
+.plain{
+  color: #332047;
+  height: 100vh;
+  background: #fff;
+}
+
+.rules-img{
+  width: 100%;
+  height: auto;
+}
+
+.plain ul{
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.s2button {
+  height: 40px;
+  padding: 0 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 15px 20px rgba(54, 24, 79, 0.5);
+  z-index: 3;
+  color: #fff;
+  background-color: #695681;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+.s2button:hover {
+  box-shadow: 0px 10px 10px -10px rgba(54, 24, 79, 0.5);
+  transform: translateY(5px);
+  background: #FB8A8A;
+  color: white;
+}
+/* Section2 CSS Ends */
+
+/*Section 3 CSS Begins*/
+.question {
+  height: 100vh;
+  position: relative;
+}
+.qhead{
+  position: absolute;
+  margin: 1%;
+  top: 20%;
+  transform: translate(0%, -50%);
+  color: #fff;
+  font-size: 27px;
+  font-weight: 700;
+}
+.question p {
+  position: absolute;
+  margin: 1%;
+  margin-left: 3%;
+  top: 40%;
+  transform: translate(0%, -50%);
+  color: #fff;
+  font-size: 23px;
+}
+.answer-bar {
+  margin: 0;
+  position: absolute;
+  margin: 1%;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #170330;
+  font-size: 0.6rem;
+  /* color: #fff; */
+  font-size: 15px;
+}
+#submitAnswer{
+  background: #210149;
+  color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.arrow{
+  transform: translate(0px, -1px);
+}
+/*Section 3 CSS Ends*/
 
 /* Footer */
 #footer {
@@ -742,7 +826,7 @@ footer .icon-wrap i{
 }
 
 footer .icon-wrap .mdi {
-  color: #000;
+  color: #fff;
   line-height: 55px;
   text-align: center;
 }
@@ -795,7 +879,7 @@ footer .footnote {
   opacity: 0.6;
 }
 footer .footnote .highlight {
-  color: #ff408f;
+  color: #f184b3;
   font-family: "Open Sans";
 }
 
@@ -803,3 +887,14 @@ footer>.row>*{
     width: unset;
 }
 /*Footer ends*/
+
+/* Responsiveness */
+@media only screen and (max-width:768px){
+  .rules-img{
+    display: none;
+  }
+  .plain ul{
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}

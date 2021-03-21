@@ -1,70 +1,53 @@
-body{
-    background-size: 100%;
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background: linear-gradient(90deg, #695681, #342d72);
-    overflow: hidden;
-}
-.main-heading{
-    color: #fff;
-    
-}
+<!DOCTYPE html>
+<html lang="en">
 
-.form{
-    display: block;
-    background-color: #000;
-    opacity: 0.85;
-    padding: 2%;
-    border-radius: 2%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 5px 5px 10px #000;
-    color: #fff;
-    z-index: 2;
-}
-.form-control{
-    color: #fff;
-    background-color: #222;
-    border-radius: 0px;
-    border: 0px;
-    border-bottom: 2px solid #999;
-    
-}
-.form-headings{
-    color: #fff;
-}
-.return{
-    color: #fff;
-    display: block;
-    margin-top: 8px;
-    text-decoration: none;
-}
-.return:hover{
-    color: #fff;
-    text-decoration: underline;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.wave{
-    position: absolute;
-    background-size: cover;
-    width: 100%;
-    z-index: 1;
-}
-.wave1{
-    bottom: 0;
-}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,600italic,300italic,400italic,300,700italic,800italic,800"
+  rel="stylesheet" type="text/css" />
+<link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" media="all"
+  rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        .c-submission {
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .green{
+            color: green;
+        }
+        .center {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            /* border: 3px solid green; */
+        }
 
-@media only screen and (max-width:576px){
-    .form{
-        width: 80%;
-    }
-}
-
-/*Background*/
-.about {
+        .center h2 {
+            margin: 0;
+            position: absolute;
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            font-size: 50px;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+        /*Background*/
+        .about {
     position: fixed;
     z-index: 10;
     bottom: 10px;
@@ -226,6 +209,7 @@ body{
     margin: 0;
     padding: 0;
     height: auto;
+    position: relative;
     font-family: "Barlow", sans-serif;
     background: #695681;
   }
@@ -696,3 +680,54 @@ body{
     animation-name: pieceLeft;
     animation-delay: 4.5s;
   }
+
+    </style>
+</head>
+
+<body>
+    <section class="wrapper">
+
+        <div class="container">
+
+            <div id="scene" class="scene" data-hover-only="false">
+
+
+                <div class="circle" data-depth="1.2"></div>
+
+                <div class="one" data-depth="0.9">
+                    <div class="content">
+                        <span class="piece"></span>
+                        <span class="piece"></span>
+                        <span class="piece"></span>
+                    </div>
+                </div>
+
+                <div class="two" data-depth="0.60">
+                    <div class="content">
+                        <span class="piece"></span>
+                        <span class="piece"></span>
+                        <span class="piece"></span>
+                    </div>
+                </div>
+
+                <div class="three" data-depth="0.40">
+                    <div class="content">
+                        <span class="piece"></span>
+                        <span class="piece"></span>
+                        <span class="piece"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="c-submission">
+        <div class="center">
+            <h2><span class="green"><!--<i class="fa fa-times mx-3"></i>--> <i class="fa fa-check-square-o"></i>Your submission is incorrect.</span></h1>
+        </div>
+    </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+</body>
+
+</html>

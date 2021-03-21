@@ -21,22 +21,6 @@
 
 <body>
   <div class="navigation-bar">
-    <!-- <nav class="navbar navbar-light justify-content-between">
-      <% if(isAuthenticated){ %>
-        <a class="navbar-brand">Hello <%=name.playerName%>,</a>
-        <% }else{ %>
-          <a class="navbar-brand">Hello Guest,</a>
-        <% } %>
-      <form class="form-inline" method="POST" action="/logout">
-        <% if(!isAuthenticated) { %>
-          <a href="/login" class="link">Login</a>
-          <a href="/register" class="link">Register</a>
-        <% }else{ %>
-          <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
-          <button type="submit" class="link">Logout</a>
-        <% } %>  
-      </form>
-    </nav> -->
     <nav>
       <div class="menu">
         <% if(isAuthenticated){ %>
@@ -51,7 +35,7 @@
                         <% }else{ %>
                           <form action="/logout" method="post">
                             <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
-                            <button type="submit" class="link">Logout</a>
+                            <button type="submit" class="link logout">Logout</a>
                           </form>
                             <% } %>
                     </div>
@@ -106,16 +90,56 @@
       </div>
 
     </div>
-    <!-- <a href="/quiz" class="btn btn-primary">Quiz</a>
-    <img src="Assets/imgs/wave3.png" alt="" class="wave wave1">  -->
+    <!--<img src="Assets/imgs/wave3.png" alt="" class="wave wave1">  -->
   </section>
-  <section class="plain">
-    <h1>Hello world</h1>
-  </section>
+<!-- Section 2 begins -->
+<section>
+  <div class="container-fluid plain">
+      <h1 class="text-center text-capitalize pt-5">Rules</h1>
+      <hr class="w-25 mx-auto">
+      <div class="row mb-5">
+          <div class="col-lg-6 col-md-6 col-12">
+              <img src="Assets/imgs/rules.jpg" class="rules-img my-4">
+          </div>
+
+
+          <div class="col-lg-6 col-md-6 col-12">
+              <h3>Please read the instructions carefully before proceeding to the quiz:</h3>
+              <hr>
+              <div>
+                <ul>
+                  <li>You must register with your NITH email id only.</li>
+                  <li>The quiz contains 10 sections . Each section consist of 4 questions each. </li>
+                  <li>A single textbox is present at the end of each section. You must write your answers in the textbox separated by a single space.</li>
+                  <li>There shouldn't be any leading or following space in the answer string.</li>
+                  <li>For a valid submission you must give the answers to all the 4 questions.</li>
+                  <li>The aim is to compute the answers before anybody else does. So if any player makes a correct submission you would be directed to the next section.</li>
+                  <li>The latest submission is recorded on a blockchain. You can view the CryptoBoard at any time to view the details and points of players who have answered the questions.</li>
+                </ul>
+              </div>
+              <button id="openQuiz2" class="s2button my-4">Start Quiz</button>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Section 2 ends -->
   <section class="gradient sec-3">
     <img src="Assets/imgs/wave6.png" alt="" class="wave wave2">
 
-    <h1 style="padding-top: 150px;">Hello there</h1>
+    <!-- <div class="qhead">Sample Question</div> -->
+      <div class="question" >
+        <p> Que 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed magni nam beatae eos sit. <br> Que 2. Sapiente eos aliquid inventore quasi, possimus rem officia
+           hic deleniti nihil quis dolor aspernatur, cupiditate commodi animi <br> Que 3. qui? Sunt, eos ratione, delectus ab consequatur suscipit nostrum quam earum accusantium,
+            maxime <br> Que 4. possimus corporis beatae molestiae rem repudiandae tempora reiciendis dignissimos quasi voluptatum ea officiis error sequi obcaecati?</p>
+            <div class="answer-bar">
+              <input type="text" class="answer" id="exampleInputNumber" aria-describedby="numberHelp" placeholder="Enter your answer here" name="answer">
+            <button id="submitAnswer"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-circle arrow" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg></button>
+            </div>
+        </div>
+      
     <!-- <img src="Assets/imgs/wave4.png" alt="" class="wave wave3"> -->
   </section>
   <section class="plain">
