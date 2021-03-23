@@ -152,9 +152,16 @@ app.post('/register', (req,res)=>{
                                 mailer.sendMail({
                                     to:req.body.email,
                                     from: 'cryptoquiznith@gmail.com',
-                                    subject: 'Verification of you account',
+                                    subject: 'Verification of your account for Cryptoquiz',
                                     html: `
-                                    <p>To verify click link: <p><a href = "http://localhost:3000/verify/${token}"> Link</a> `
+                                    <p>Get ready for a mathematical roller coaster ride as Team .Exe brings to you Crytoquiz, 
+                                    an online event to test both your speed and accuracy. There's something more, 
+                                    the quiz is hosted on a decentralised website and only the quickest submission will
+                                     make its place on the CryptoBoard. So tighten up your belts, and race your brain for the solution hunt!</p>
+
+                                     <p>We are glad you're here </p>
+                                    <p>To verify your account click here: 
+                                    <p><a href = "http://localhost:3000/verify/${token}"> Verify your account</a> `
                                 })
                             })
                             .catch((err)=>{

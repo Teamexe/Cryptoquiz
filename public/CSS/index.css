@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,600,700,800,900|Barlow:300,400,500,600,700,800,900&display=swap");
 .gradient{
     position: relative;
-    background: #695681;
+    background: #2c3c92;
     height: 100vh;
 }
 
@@ -183,7 +183,11 @@ body {
   padding: 0;
   height: auto;
   font-family: "Barlow", sans-serif;
-  background: #695681;
+  /* background: #7aaae7; */
+  background: url("https://img.rolandberger.com/img/Background-Folder/Backgrounds/RB_Dig_KIQuiz_stage_00_image_caption_none.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .logo {
@@ -266,7 +270,7 @@ nav .menu .menu_links .link:before {
   position: absolute;
   width: 0px;
   height: 4px;
-  background: linear-gradient(90deg, #FFEDC0 0%, #FF9D87 100%);
+  background: linear-gradient(90deg, #6c78e6 0%, #214a97 100%);
   bottom: -10px;
   border-radius: 4px;
   transition: all 0.4s cubic-bezier(0.82, 0.02, 0.13, 1.26);
@@ -274,7 +278,8 @@ nav .menu .menu_links .link:before {
 }
 nav .menu .menu_links .link:hover {
   opacity: 1;
-  color: #FB8A8A;
+  color: #143899;
+  font-weight: bold;
 }
 nav .menu .menu_links .link:hover:before {
   width: 40px;
@@ -484,9 +489,9 @@ nav .menu .menu_icon:hover .icon:after {
   padding: 0 30px;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0px 15px 20px rgba(54, 24, 79, 0.5);
+  box-shadow: 0px 15px 20px rgba(21, 16, 71, 0.5);
   z-index: 3;
-  color: #695681;
+  color: #3358c0;
   background-color: white;
   text-transform: uppercase;
   font-weight: 600;
@@ -659,7 +664,7 @@ nav .menu .menu_icon:hover .icon:after {
 
 /*Section 2 Rules*/
 .plain{
-  color: #332047;
+  color: #202647;
   height: 100vh;
   background: #fff;
 }
@@ -678,17 +683,17 @@ nav .menu .menu_icon:hover .icon:after {
   padding: 0 30px;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0px 15px 20px rgba(54, 24, 79, 0.5);
+  box-shadow: 0px 15px 20px rgba(21, 20, 80, 0.5);
   z-index: 3;
   color: #fff;
-  background-color: #695681;
+  background-color: #424394;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
   transition: all 0.3s ease;
 }
 .s2button:hover {
-  box-shadow: 0px 10px 10px -10px rgba(54, 24, 79, 0.5);
+  box-shadow: 0px 10px 10px -10px rgba(24, 32, 79, 0.5);
   transform: translateY(5px);
   background: #FB8A8A;
   color: white;
