@@ -60,18 +60,22 @@ section{
   position: relative;
 }
 .q2{
-  padding-top: 10%;
+    font-size: 70px;
+    font-weight: 600;
+  padding-top: 15%;
+  margin-bottom: 40px;
 }
 
 .question{
+    font-size: 20px;
   color: #fff;
-  padding-left: 20px;
-  width: 100%;
+  /* padding-left: 20px; */
+  /* width: 100%; */
   text-align: left;
-  position: absolute;
+  /* position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 /* .answer-feild{
   width: 100%;
