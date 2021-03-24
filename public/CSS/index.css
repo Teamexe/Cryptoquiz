@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,600,700,800,900|Barlow:300,400,500,600,700,800,900&display=swap");
-.gradient{
+/* .gradient{
     position: relative;
     background: #2c3c92;
     height: 100vh;
-}
+} */
 
 .wave{
     position: absolute;
@@ -188,6 +188,21 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  /* background-attachment: fixed; */
+}
+
+.wrapper2{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  background: url("https://img.rolandberger.com/img/Background-Folder/Backgrounds/RB_Dig_KIQuiz_stage_00_image_caption_none.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(10px);
 }
 
 .logo {
@@ -666,7 +681,7 @@ nav .menu .menu_icon:hover .icon:after {
 .plain{
   color: #202647;
   height: 100vh;
-  background: #fff;
+  /* background: #fff; */
 }
 
 .rules-img{
