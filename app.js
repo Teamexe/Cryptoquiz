@@ -322,3 +322,19 @@ io.on('connect',socket=>{
         }
     })
 })
+
+
+app.get("/developers",(req,res)=>{
+    res.render("developers",{
+        name:req.session.player.playerName,
+        identity:req.session.player.email,
+        csrfToken: req.csrfToken()
+    });
+});
+app.get("/cryptoboard",(req,res)=>{
+    res.render("leaderboard",{
+        name:req.session.player.playerName,
+        identity:req.session.player.email,
+        csrfToken: req.csrfToken()
+    });
+});

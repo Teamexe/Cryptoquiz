@@ -50,6 +50,7 @@
     padding: 160px 0px 100px 20px;
     width: 95%;
     font-size: 35px !important;
+
   }
 
   .card{
@@ -127,6 +128,8 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    margin-left: 0;
+    padding-bottom: 20px;
   }
   
   .close-content {

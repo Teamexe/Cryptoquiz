@@ -39,11 +39,12 @@ left: 0;">
 
     <div class="navigation-bar">
         <nav class="navbar navbar-light justify-content-between">
-            <a class="navbar-brand">Hello <%=name%>,</a>
+            <a class="navbar-brand">Hello <%=name%></a>
             <span style="visibility:hidden" id="identity"><%=identity %></span>
             <form action="/logout" method="post">
                 <input hidden type="text" name="_csrf" value="<%=csrfToken%>">
-                <a href="#" class="btn btn-primary button lbutton">Leaderboard</a>
+                <a href="/cryptoboard" class="btn btn-primary button lbutton">Cryptoboard</a>
+                <a href="/developers" class="btn btn-primary button lbutton">Developers</a>
                 <button type="submit" class="btn btn-primary button lbutton">Logout</a>
                 <!-- <a href="#" class="btn btn-success">Register</a> -->
             </form>
@@ -88,24 +89,24 @@ left: 0;">
         <div class="card card-color-0">
           <div class="border"></div>
           <img src="Assets/imgs/11.jpg" />
-          <h1>Hey now, you're an allstar</h1>
+          <h1>Question- 1 Title</h1>
         </div>
         <div class="card card-color-2">
           <div class="border"></div>
           <img src="Assets/imgs/2.jpg" />
-          <h1>Hey now, you're a rock star</h1>
+          <h1>Question- 2 Title</h1>
         </div>
       </div>
       <div class="card-column column-1">
         <div class="card card-color-1">
           <div class="border"></div>
           <img src="Assets/imgs/3.jpg" />
-          <h1>Get your game on, go play</h1>
+          <h1>Question- 3 Title</h1>
         </div>
         <div class="card card-color-3">
           <div class="border"></div>
           <img src="Assets/imgs/44.jpg" />
-          <h1>Get the show on, get paid</h1>
+          <h1>Question- 4 Title</h1>
         </div>
       </div>
     </div>
@@ -182,51 +183,58 @@ left: 0;">
     <!-- <script src="JS/base.js"></script> -->
     <!-- <script type="text/javascript" src="JS/quiz.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
-    <!-- <script>
+     <script>
+       var q = [];
+       var i;
       const populate = ({ques1,ques2,ques3,ques4})=>{
-          Ques1 = document.querySelector('#q1').firstChild
-          Ques2 = document.querySelector('#q2').firstChild
-          Ques3 = document.querySelector('#q3').firstChild
-          Ques4 = document.querySelector('#q4').firstChild
-          Ques1.nodeValue = ques1;
-          Ques2.nodeValue = ques2;
-          Ques3.nodeValue = ques3;
-          Ques4.nodeValue = ques4;
+          // Ques1 = document.querySelector('#q1').firstChild
+          // Ques2 = document.querySelector('#q2').firstChild
+          // Ques3 = document.querySelector('#q3').firstChild
+          // Ques4 = document.querySelector('#q4').firstChild
+          // Ques1.nodeValue = ques1;
+          // Ques2.nodeValue = ques2;
+          // Ques3.nodeValue = ques3;
+          // Ques4.nodeValue = ques4;
+          i=0
+          q[0] = ques1;
+          q[1] = ques2;
+          q[2] = ques3;
+          q[3] = ques4;
+
+          console.log({ques1,ques2,ques3,ques4})
       }
 
-      const submitButton = document.querySelector('#submitAnswer')
+      // const submitButton = document.querySelector('#submitAnswer')
       const socket = io();
       socket.on('question',data=>{
           populate(data);
       })
 
-      submitButton.addEventListener('click',e=>{
-        e.preventDefault;
-        let data1 = document.querySelector('#exampleInputNumber').value;
-        let data2 = document.querySelector('.navbar span').firstChild.nodeValue;
-        let data = {
-          answer:data1,
-          identity:data2
-        }
-        socket.emit('answer',data); 
-      })
+      // submitButton.addEventListener('click',e=>{
+      //   e.preventDefault;
+      //   let data1 = document.querySelector('#exampleInputNumber').value;
+      //   let data2 = document.querySelector('.navbar span').firstChild.nodeValue;
+      //   let data = {
+      //     answer:data1,
+      //     identity:data2
+      //   }
+      //   socket.emit('answer',data); 
+      // })
 
-      socket.on('Submission',value=>{
-        if(value){
-          //Make a dom element whose visibility changes from hidden and it says correct submission
-          console.log('correct submission')
-        }else{
-          console.log('Wrong Submission')
-        }
-      })
+      // socket.on('Submission',value=>{
+      //   if(value){
+      //     //Make a dom element whose visibility changes from hidden and it says correct submission
+      //     console.log('correct submission')
+      //   }else{
+      //     console.log('Wrong Submission')
+      //   }
+      // })
 
-      socket.on('elseSubmission',()=>{ //Listening for others submissions
-        console.log('Someone else submitted')
-      })
+      // socket.on('elseSubmission',()=>{ //Listening for others submissions
+      //   console.log('Someone else submitted')
+      // })
 
-    </script> -->
 
-    <script>
       // listing vars here so they're in the global scope
 var cards, nCards, cover, openContent, openContentText, pageIsOpen = false,
     openContentImage, closeContent, windowWidth, windowHeight, currentCard;
@@ -296,6 +304,15 @@ function onCardClick(card, i) {
 */
 function animateCoverUp(card) {
   // get the position of the clicked card
+  
+
+  console.log(card);
+  var c = card.classList[1];
+  console.log(typeof(c.split("-")[2]));
+  var i = parseInt(c.split("-")[2]);
+  console.log(q[i]);
+
+
   var cardPosition = card.getBoundingClientRect();
   // get the style of the clicked card
   var cardStyle = getComputedStyle(card);
@@ -303,7 +320,7 @@ function animateCoverUp(card) {
   setCoverColor(cardStyle);
   scaleCoverToFillWindow(cardPosition);
   // update the content of the opened page
-  openContentText.innerHTML = '<h1>'+card.children[2].textContent+'</h1>'+paragraphText;
+  openContentText.innerHTML = '<h1>'+card.children[2].textContent+'</h1>'+q[i];
   openContentImage.src = card.children[1].src;
   setTimeout(function() {
     // update the scroll position to 0 (so it is at the top of the 'opened' page)
