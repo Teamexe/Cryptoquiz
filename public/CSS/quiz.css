@@ -118,6 +118,24 @@ section{
   padding-left: 10px;
   padding-top: 20px;
 }
+
+.navbar-light .navbar-toggler-icon span{
+  color: #fff;
+}
+.navbar-nav{
+  position: relative;
+}
+nav form{
+  position: absolute;
+  right: 5%;
+}
+.navbar-toggler{
+  position: absolute;
+  right: 5%;
+}
+.navbar-brand{
+  text-shadow: #fff 3px 3px 8px;
+}
 .button{
   margin: 10px;
   background: transparent;
@@ -145,6 +163,7 @@ section{
   background: transparent;
   border-color: #fff;
 }
+
 .outer-container{
   /* background-color: #fff; */
   height: 60vh;
@@ -309,4 +328,33 @@ footer {
 
   footer>.row>*{
       width: unset;
+  }
+
+  @media screen and (max-width: 799px){
+    nav ul{
+      background-color: #000;
+      opacity: 0.8;
+    }
+    .button{
+      margin-top: 4px;
+      padding-top: 0;
+      transition: none;
+      border: none;
+    }
+    .button:hover{
+      margin-top: 4px;
+      padding-top: 0;
+      padding-bottom: 5px;
+      background: transparent;
+      border-color: #fff;
+      text-shadow: #fff 3px 3px 8px;
+    }
+    
+    .button:focus{
+      margin-top: 4px;
+      padding-top: 0;
+      padding-bottom: 0px;
+      background: transparent;
+      border-color: #fff;
+    }
   }
