@@ -26,31 +26,40 @@
 
 <body>
   <div class="navigation-bar">
-    <nav>
-      <div class="menu">
-        
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+      <div class="container-fluid">
         <% if(isAuthenticated){ %>
-          <p class="website_name">Hello <%=name.playerName%>,</a>
-              <% }else{ %>
-                <p class="website_name">Hello Guest,</a>
-                  <% } %>
-                    <div class="menu_links">
-                      <a href="/quiz" class="btn btn-primary button lbutton logout">Start Quiz</a>
-                    <a href="/developers" class="btn btn-primary button lbutton logout">Developers</a>
-                      <% if(!isAuthenticated) { %>
-                        <a href="/login" class="link">Login</a>
-                        <a href="/register" class="link">Register</a>
-                        <% }else{ %>
-                          <form style="display: inline;" action="/logout" method="post">
-                            <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
-                            <button type="submit" class="btn btn-primary button lbutton logout">Logout</a>
-                          </form>
-                            <% } %>
-                    </div>
-                    <div class="menu_icon">
-                      <span class="icon"></span>
-                    </div>
-                    
+          <a class="navbar-brand">Hello <%=name.playerName%>,</a>
+        <% }else{ %>
+          <a class="navbar-brand">Hello Guest,</a>
+        <% } %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <% if(!isAuthenticated) { %>
+            <form action="">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a href="/quiz" class="btn btn-primary button lbutton logout">Start Quiz</a></li>
+                <li class="nav-item"><a href="/developers" class="btn btn-primary button lbutton logout">Developers</a></li>
+                <li class="nav-item"><a href="/login" class="btn btn-primary button lbutton logout">Login</a></li>
+                <li class="nav-item"><a href="/register" class="btn btn-primary button lbutton logout">Register</a></li>
+              </ul>
+            </form>
+          <% }else{ %>
+            <form style="display: inline;" action="/logout" method="post">
+              <input type="text" hidden name="_csrf" value="<%=csrfToken%>">
+              <ul class="navbar-nav">
+                <li class="nav-item"><a href="/quiz" class="btn btn-primary button lbutton logout">Start Quiz</a></li>
+                <li class="nav-item"><a href="/developers" class="btn btn-primary button lbutton logout">Developers</a></li>
+                <li class="nav-item"><button type="submit" class="btn btn-primary button lbutton logout">Logout</button></li>
+              </ul>
+            </form>
+          <% } %>
+        </div>
+        <div class="menu_icon">
+          <span class="icon"></span>
+        </div>        
       </div>
     </nav>
   </div>
