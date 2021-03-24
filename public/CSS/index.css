@@ -185,11 +185,11 @@ body {
   height: auto;
   font-family: "Barlow", sans-serif;
   /* background: #7aaae7; */
-  background: url("https://img.rolandberger.com/img/Background-Folder/Backgrounds/RB_Dig_KIQuiz_stage_00_image_caption_none.jpg");
+  background: url("/Assets/imgs/bgc.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /* background-attachment: fixed; */
+  background-attachment: fixed;
 }
 
 .wrapper2{
@@ -231,23 +231,25 @@ body {
 nav .menu {
   width: 100%;
   height: 80px;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5%;
+  padding: 0 2%;
   box-sizing: border-box;
   z-index: 3;
 }
 nav .menu .website_name {
-  color: #695681;
+  /* color: #695681; */
   font-weight: 600;
   font-size: 20px;
   letter-spacing: 1px;
-  background: white;
+  color: white;
   padding: 4px 8px;
   border-radius: 2px;
-  opacity: 0.5;
+  opacity: 0.8;
   transition: all 0.4s ease;
   cursor: pointer;
 }
@@ -256,7 +258,7 @@ nav .menu .website_name:hover {
 }
 nav .menu .menu_links {
   transition: all 0.4s ease;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 nav .menu .menu_links:hover {
   opacity: 1;
@@ -350,8 +352,10 @@ nav .menu .menu_icon:hover .icon:after {
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
-  height: 120vh;
+  height: 130vh;
   overflow: hidden;
+  margin-top: -60px;
+  z-index: -1;
 }
 .wrapper .container {
   margin: 0 auto;
@@ -690,10 +694,6 @@ nav .menu .menu_icon:hover .icon:after {
   height: auto;
 }
 
-.plain ul{
-  font-weight: 500;
-  font-size: 1.2rem;
-}
 .s2button {
   height: 40px;
   padding: 0 30px;
@@ -792,13 +792,27 @@ nav .menu .menu_icon:hover .icon:after {
   /* font-size: 30px !important; */
 }
 
+
+.rules-c{
+  color: white;
+  background: linear-gradient(to bottom , transparent , black);
+  padding: 0 2%;
+  padding-bottom: 50px;
+}
+
+.rules{
+  font-size: 16px !important;
+  /* text-align: center; */
+}
+
 footer {
 
-  padding: 25px 0 22px 0;
+  padding: 0  22px 25px;
   position: relative;
   text-align: center;
-  background: #695681;
+  background: #000000;
   background-blend-mode: lighten;
+  border-top: .5px solid rgba(255, 255, 255, 0.637);
 }
 
 .f-logo{
@@ -807,7 +821,13 @@ footer {
 }
 
 .f-logo img{
-    width: 130px;
+    width: 100px;
+}
+
+footer hr{
+  background-color: rgb(219, 219, 219);
+  padding: 0;
+  margin: 5px;
 }
 
 footer .mdi-chevron-double-up {
@@ -894,7 +914,7 @@ footer .icon-wrap .icon:hover .mdi {
   animation: toBottomFromTop 0.3s forwards;
 }
 footer .footnote {
-  color: #000;
+  color: rgb(209, 209, 209);
   font-size: 10pt;
   margin-top: 15px;
   opacity: 0.6;
