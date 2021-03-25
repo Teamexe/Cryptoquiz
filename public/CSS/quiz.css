@@ -79,17 +79,16 @@ section{
   align-items: center;
   position: relative;
 } */
-.answer-bar{
+/* .answer-bar{
 
   position: absolute;
   top: 80%;
   left: 50%;
   transform: translate(-30%, -50%);
   width: 100%;
-}
+} */
 
-#submitAnswer{
-  /* background: #1E4D92; */
+/* #submitAnswer{
   color: #fff;
   border-radius: 50%;
   width: 30px;
@@ -97,9 +96,9 @@ section{
 }
 .arrow{
   transform: translate(-8px, -1px);
-}
+} */
 
-.answer{
+/* .answer{
   background: #ddd;
   margin-left: 7%;
   opacity: 0.8;
@@ -109,8 +108,22 @@ section{
   border: 0;
   border-bottom: 2px #777 solid;
   display: inline;
-  /* left: 22%;
-  top: 40%; */
+  
+} */
+.answer-container{
+  position: relative;
+}
+.ans{
+  position: absolute;
+  left: 15%;
+}
+.feild{
+  width: 60vw;
+  height: 2rem;
+  color: #fff;
+  background-color: #000;
+  opacity: 0.7;
+  border-bottom: #fff 3px solid;
 }
 
 .navbar-brand{
@@ -358,3 +371,140 @@ footer {
       border-color: #fff;
     }
   }
+
+/* Submit Button */
+#submitAnswer {
+	position: relative;
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 40px 0;
+	color: #03e9f4;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: 0.5s;
+	letter-spacing: 4px;
+	overflow: hidden;
+	margin-right: 50px;
+}
+#submitAnswer:hover {
+	background: #03e9f4;
+	color: #050801;
+	box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+		0 0 200px #03e9f4;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+#submitAnswer:nth-child(0) {
+	filter: hue-rotate(110deg);
+}
+#submitAnswer span {
+	position: absolute;
+	display: block;
+}
+#submitAnswer span:nth-child(1) {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #03e9f4);
+	animation: animate1 1s linear infinite;
+}
+@keyframes animate1 {
+	0% {
+		left: -100%;
+	}
+	50%,
+	100% {
+		left: 100%;
+	}
+}
+a span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #03e9f4);
+	animation: animate2 1s linear infinite;
+	animation-delay: 0.25s;
+}
+@keyframes animate2 {
+	0% {
+		top: -100%;
+	}
+	50%,
+	100% {
+		top: 100%;
+	}
+}
+#submitAnswer span:nth-child(3) {
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #03e9f4);
+	animation: animate3 1s linear infinite;
+	animation-delay: 0.5s;
+}
+@keyframes animate3 {
+	0% {
+		right: -100%;
+	}
+	50%,
+	100% {
+		right: 100%;
+	}
+}
+
+#submitAnswer span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #03e9f4);
+	animation: animate4 1s linear infinite;
+	animation-delay: 0.75s;
+}
+@keyframes animate4 {
+	0% {
+		bottom: -100%;
+	}
+	50%,
+	100% {
+		bottom: 100%;
+	}
+}
+  /*Submission Checking*/
+.c-submission {
+  width: 100%;
+  height: 100vh;
+  z-index: 101;
+  background-color: #000;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
+.center {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.center h2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+/*Submission Checking Ends*/

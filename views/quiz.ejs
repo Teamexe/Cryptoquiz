@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,600italic,300italic,400italic,300,700italic,800italic,800"
-        rel="stylesheet" type="text/css" />
-    <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" media="all"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="CSS/quiz.css">
-    <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="CSS/index.css">
-    <link rel="stylesheet" href="CSS/util.css">
-    <link rel="stylesheet" href="CSS/questioncard.css">
-    <!-- <script src="JS/qc.js"></script> -->
-    <title>Cryptoquiz</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,600italic,300italic,400italic,300,700italic,800italic,800"
+    rel="stylesheet" type="text/css" />
+  <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" media="all"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="CSS/quiz.css">
+  <link rel="stylesheet" href="CSS/main.css">
+  <link rel="stylesheet" href="CSS/index.css">
+  <link rel="stylesheet" href="CSS/util.css">
+  <link rel="stylesheet" href="CSS/questioncard.css">
+  <!-- <script src="JS/qc.js"></script> -->
+  <title>Cryptoquiz</title>
 </head>
 
 <body style="background-attachment: fixed;    background: black;">
@@ -35,64 +35,49 @@ z-index: -1;
 opacity: .5;
 left: 0;">
     <source src="Assets/imgs/bgvideo.mp4" type="video/mp4">
-</video>
-
-    <div class="navigation-bar">
-        <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
-            <div class="container-fluid">
-              <a class="navbar-brand">Hello <%=name%></a>
-            <span style="visibility:hidden" id="identity"><%=identity %></span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <form action="/logout" method="post">
-                <input hidden type="text" name="_csrf" value="<%=csrfToken%>">
-                <ul class="navbar-nav">
-                  <li class="nav-item"><a href="/cryptoboard" class="btn btn-primary button lbutton">Cryptoboard</a></li>
-                  <li class="nav-item"><a href="/developers" class="btn btn-primary button lbutton">Developers</a></li>
-                  <li class="nav-item"><button type="submit" class="btn btn-primary button lbutton">Logout</a></li>
-                </ul>
-                <!-- <a href="#" class="btn btn-success">Register</a> -->
-            </form>
-            </div>
-            </div>
-        </nav>
+  </video>
+  <div class="c-submission" id="correct-submission">
+    <div class="center">
+      <h2><span class="green">
+          <!--<i class="fa fa-times mx-3"></i>--> <i class="fa fa-check-square-o green mx-4"></i>Your submission is
+          correct.
+        </span>
+      </h2>
     </div>
-    <!-- <section class="gradient">
-        <div class="h3 q2">Question 1</div>
-        <div class="h3 question" id="q1">
-         
+  </div>
+  <div class="c-submission" id="incorrect-submission">
+    <div class="center">
+      <h2><span class="red">
+          <i class="fa fa-times mx-3 red"></i> Your submission is incorrect.
+        </span>
+      </h2>
+    </div>
+  </div>
+  <div class="navigation-bar">
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+      <div class="container-fluid">
+        <a class="navbar-brand">Hello <%=name%></a>
+        <span style="visibility:hidden" id="identity">
+          <%=identity %>
+        </span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form action="/logout" method="post">
+            <input hidden type="text" name="_csrf" value="<%=csrfToken%>">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a href="/cryptoboard" class="btn btn-primary button lbutton">Cryptoboard</a></li>
+              <li class="nav-item"><a href="/developers" class="btn btn-primary button lbutton">Developers</a></li>
+              <li class="nav-item"><button type="submit" class="btn btn-primary button lbutton">Logout</a></li>
+            </ul>
+          </form>
         </div>
-
-    </section>
-    <section  class="gradient">
-      <div class="h3 q2 white">Question 2</div>
-      <div class="h3 question white" id="q2">
-       
       </div>
-    </section>
-    <section  class="gradient">
-        <div class="h3 q2" style="padding-top: 20%;">Question 3</div>
-        <div class="h3 question" id="q3">
-         
-        </div>
-    </section>
-    <section class="gradient"> 
-
-      <div class="h3 q2 white">Question 4</div>
-      <div class="h3 question white" id="q4">
-       
-      </div>
-
-    </section> -->
-
-    <!-- <div class="answer-bar">
-      <input type="text" class="answer" id="exampleInputNumber" aria-describedby="numberHelp" placeholder="Enter your answer string here(answers to be separated with spaces)" name="answer">
-    <button id="submitAnswer"></button>
-    </div> -->
-
-
+    </nav>
+  </div>
+  <div class="row">
     <div class="container">
       <div class="card-column column-0">
         <div class="card card-color-0">
@@ -119,9 +104,24 @@ left: 0;">
         </div>
       </div>
     </div>
-    
+    <div class="container-fluid answer-container">
+      <div class="row" style="padding-bottom: 10vh;">
+        <div class="container-fluid ans">
+          <input type="text" class="feild" id="exampleInputNumber" aria-describedby="numberHelp"
+            placeholder="Enter your answer string here(answers to be separated with spaces)" name="answer">
+
+          <button id="submitAnswer">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Check Answer</button>
+        </div>
+      </div>
+    </div>
+
     <div id="cover" class="cover"></div>
-    
+
     <div id="open-content" class="open-content">
       <a href="#" id="close-content" class="close-content"><span class="x-1"></span><span class="x-2"></span></a>
       <img id="open-content-image" src="" />
@@ -131,312 +131,265 @@ left: 0;">
 
 
 
-
-
-    
-    <!-- <div class="section fp-auto-height">
-        <footer>
-          <div class="col-lg-12 f-logo">
-            <a href="https://teamexe.in/" target="blank"><img style="cursor: pointer;" src="Assets/imgs/icon.webp" alt="logo" width="200px"></a>
-          </div>
-  
-          <div class="icon-wrap flex row">
-            <a href="https://www.linkedin.com/company/exe-nith/" target="_blank">
-              <div class="flex icon icon1" id="icon-1">
-                <i class="mdi mdi-linkedin"></i>
-              </div>
-            </a>
-  
-            <a href="https://www.instagram.com/teamexenith" target="_blank">
-              <div class="flex icon icon2" id="icon-2">
-                <span class="mdi mdi-instagram"></span>
-              </div>
-            </a>
-            <a href="https://www.facebook.com/teamexe/" class="hide" target="_blank">
-              <div class="flex icon icon3" id="icon-3">
-                <i class="mdi mdi-facebook"></i>
-              </div>
-            </a>
-            <a href="mailto: teamexenith@gmail.com" target="_blank">
-              <div class="flex icon icon4" id="icon-4">
-                <i class="mdi mdi-gmail"></i>
-              </div>
-            </a>
-            <a href="https://github.com/Teamexe" target="_blank">
-              <div class="flex icon icon5" id="icon-5">
-                <i class="mdi mdi-github"></i>
-              </div>
-            </a>
-            <a href="https://www.youtube.com/channel/UCpKkNivzH-N_a6n5zDaVZ6g" target="_blank">
-              <div class="flex icon icon4" id="icon-6">
-                <i class="mdi mdi-youtube"></i>
-              </div>
-            </a>
-  
-          </div>
-          <div class="info-box">
-            <div class="footnote">
-              Copyright &copy; <span class="highlight">
-                <script>document.write(new Date().getFullYear())</script>
-              </span> Team.EXE </span>
-              <br>
-              All Rights Reserved.
-            </div>
-          </div>
-        </footer>
-      </div> -->
     <!--Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"></script>
     <!-- <script src="JS/base.js"></script> -->
     <!-- <script type="text/javascript" src="JS/quiz.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
-     <script>
-       var q = [];
-       var i;
-      const populate = ({ques1,ques2,ques3,ques4})=>{
-          // Ques1 = document.querySelector('#q1').firstChild
-          // Ques2 = document.querySelector('#q2').firstChild
-          // Ques3 = document.querySelector('#q3').firstChild
-          // Ques4 = document.querySelector('#q4').firstChild
-          // Ques1.nodeValue = ques1;
-          // Ques2.nodeValue = ques2;
-          // Ques3.nodeValue = ques3;
-          // Ques4.nodeValue = ques4;
-          i=0
-          q[0] = ques1;
-          q[1] = ques2;
-          q[2] = ques3;
-          q[3] = ques4;
+    <script>
+      var q = [];
+      var i;
+      const populate = ({ ques1, ques2, ques3, ques4 }) => {
+        // Ques1 = document.querySelector('#q1').firstChild
+        // Ques2 = document.querySelector('#q2').firstChild
+        // Ques3 = document.querySelector('#q3').firstChild
+        // Ques4 = document.querySelector('#q4').firstChild
+        // Ques1.nodeValue = ques1;
+        // Ques2.nodeValue = ques2;
+        // Ques3.nodeValue = ques3;
+        // Ques4.nodeValue = ques4;
+        i = 0
+        q[0] = ques1;
+        q[1] = ques2;
+        q[2] = ques3;
+        q[3] = ques4;
 
-          console.log({ques1,ques2,ques3,ques4})
+        console.log({ ques1, ques2, ques3, ques4 })
       }
 
-      // const submitButton = document.querySelector('#submitAnswer')
+      const submitButton = document.querySelector('#submitAnswer')
       const socket = io();
-      socket.on('question',data=>{
-          populate(data);
+      socket.on('question', data => {
+        populate(data);
       })
 
-      // submitButton.addEventListener('click',e=>{
-      //   e.preventDefault;
-      //   let data1 = document.querySelector('#exampleInputNumber').value;
-      //   let data2 = document.querySelector('.navbar span').firstChild.nodeValue;
-      //   let data = {
-      //     answer:data1,
-      //     identity:data2
-      //   }
-      //   socket.emit('answer',data); 
-      // })
+      submitButton.addEventListener('click', e => {
+        e.preventDefault;
+        let data1 = document.querySelector('#exampleInputNumber').value;
+        let data2 = document.querySelector('.navbar span').firstChild.nodeValue;
+        let data = {
+          answer: data1,
+          identity: data2
+        }
+        socket.emit('answer', data);
+      })
 
-      // socket.on('Submission',value=>{
-      //   if(value){
-      //     //Make a dom element whose visibility changes from hidden and it says correct submission
-      //     console.log('correct submission')
-      //   }else{
-      //     console.log('Wrong Submission')
-      //   }
-      // })
+      socket.on('Submission', value => {
+        // window.scrollTo(0,0);
+        if (value) {
+          //Make a dom element whose visibility changes from hidden and it says correct submission
+          console.log('correct submission');
+          // let a = document.getElementById("correct-submission");
+          // a.style.visibility = "visible";
+        } else {
+          console.log('Wrong Submission');
+          // let b = document.getElementById("incorrect-submission");
+          // b.style.visibility = "visible";
+        }
+      })
 
-      // socket.on('elseSubmission',()=>{ //Listening for others submissions
-      //   console.log('Someone else submitted')
-      // })
+      socket.on('elseSubmission', () => { //Listening for others submissions
+        console.log('Someone else submitted');
+        // let a = document.getElementById("correct-submission");
+        //   a.style.visibility = "visible";
+      })
 
 
       // listing vars here so they're in the global scope
-var cards, nCards, cover, openContent, openContentText, pageIsOpen = false,
-    openContentImage, closeContent, windowWidth, windowHeight, currentCard;
+      var cards, nCards, cover, openContent, openContentText, pageIsOpen = false,
+        openContentImage, closeContent, windowWidth, windowHeight, currentCard;
 
-// initiate the process
-init();
+      // initiate the process
+      init();
 
-function init() {
-  resize();
-  selectElements();
-  attachListeners();
-}
+      function init() {
+        resize();
+        selectElements();
+        attachListeners();
+      }
 
-// select all the elements in the DOM that are going to be used
-function selectElements() {
-  cards = document.getElementsByClassName('card'),
-  nCards = cards.length,
-  cover = document.getElementById('cover'),
-  openContent = document.getElementById('open-content'),
-  openContentText = document.getElementById('open-content-text'),
-  openContentImage = document.getElementById('open-content-image')
-  closeContent = document.getElementById('close-content');
-}
+      // select all the elements in the DOM that are going to be used
+      function selectElements() {
+        cards = document.getElementsByClassName('card'),
+          nCards = cards.length,
+          cover = document.getElementById('cover'),
+          openContent = document.getElementById('open-content'),
+          openContentText = document.getElementById('open-content-text'),
+          openContentImage = document.getElementById('open-content-image')
+        closeContent = document.getElementById('close-content');
+      }
 
-/* Attaching three event listeners here:
-  - a click event listener for each card
-  - a click event listener to the close button
-  - a resize event listener on the window
-*/
-function attachListeners() {
-  for (var i = 0; i < nCards; i++) {
-    attachListenerToCard(i);
-  }
-  closeContent.addEventListener('click', onCloseClick);
-  window.addEventListener('resize', resize);
-}
+      /* Attaching three event listeners here:
+        - a click event listener for each card
+        - a click event listener to the close button
+        - a resize event listener on the window
+      */
+      function attachListeners() {
+        for (var i = 0; i < nCards; i++) {
+          attachListenerToCard(i);
+        }
+        closeContent.addEventListener('click', onCloseClick);
+        window.addEventListener('resize', resize);
+      }
 
-function attachListenerToCard(i) {
-  cards[i].addEventListener('click', function(e) {
-    var card = getCardElement(e.target);
-    onCardClick(card, i);
-  })
-}
+      function attachListenerToCard(i) {
+        cards[i].addEventListener('click', function (e) {
+          var card = getCardElement(e.target);
+          onCardClick(card, i);
+        })
+      }
 
-/* When a card is clicked */
-function onCardClick(card, i) {
-  // set the current card
-  currentCard = card;
-  // add the 'clicked' class to the card, so it animates out
-  currentCard.className += ' clicked';
-  // animate the card 'cover' after a 500ms delay
-  setTimeout(function() {animateCoverUp(currentCard)}, 500);
-  // animate out the other cards
-  animateOtherCards(currentCard, true);
-  // add the open class to the page content
-  openContent.className += ' open';
-}
+      /* When a card is clicked */
+      function onCardClick(card, i) {
+        // set the current card
+        currentCard = card;
+        // add the 'clicked' class to the card, so it animates out
+        currentCard.className += ' clicked';
+        // animate the card 'cover' after a 500ms delay
+        setTimeout(function () { animateCoverUp(currentCard) }, 500);
+        // animate out the other cards
+        animateOtherCards(currentCard, true);
+        // add the open class to the page content
+        openContent.className += ' open';
+      }
 
-/*
-* This effect is created by taking a separate 'cover' div, placing
-* it in the same position as the clicked card, and animating it to
-* become the background of the opened 'page'.
-* It looks like the card itself is animating in to the background,
-* but doing it this way is more performant (because the cover div is
-* absolutely positioned and has no children), and there's just less
-* having to deal with z-index and other elements in the card
-*/
-function animateCoverUp(card) {
-  // get the position of the clicked card
-  
-
-  console.log(card);
-  var c = card.classList[1];
-  console.log(typeof(c.split("-")[2]));
-  var i = parseInt(c.split("-")[2]);
-  console.log(q[i]);
+      /*
+      * This effect is created by taking a separate 'cover' div, placing
+      * it in the same position as the clicked card, and animating it to
+      * become the background of the opened 'page'.
+      * It looks like the card itself is animating in to the background,
+      * but doing it this way is more performant (because the cover div is
+      * absolutely positioned and has no children), and there's just less
+      * having to deal with z-index and other elements in the card
+      */
+      function animateCoverUp(card) {
+        // get the position of the clicked card
 
 
-  var cardPosition = card.getBoundingClientRect();
-  // get the style of the clicked card
-  var cardStyle = getComputedStyle(card);
-  setCoverPosition(cardPosition);
-  setCoverColor(cardStyle);
-  scaleCoverToFillWindow(cardPosition);
-  // update the content of the opened page
-  openContentText.innerHTML = '<h1>'+card.children[2].textContent+'</h1>'+q[i];
-  openContentImage.src = card.children[1].src;
-  setTimeout(function() {
-    // update the scroll position to 0 (so it is at the top of the 'opened' page)
-    window.scroll(0, 0);
-    // set page to open
-    pageIsOpen = true;
-  }, 300);
-}
+        console.log(card);
+        var c = card.classList[1];
+        console.log(typeof (c.split("-")[2]));
+        var i = parseInt(c.split("-")[2]);
+        console.log(q[i]);
 
-function animateCoverBack(card) {
-  var cardPosition = card.getBoundingClientRect();
-  // the original card may be in a different position, because of scrolling, so the cover position needs to be reset before scaling back down
-  setCoverPosition(cardPosition);
-  scaleCoverToFillWindow(cardPosition);
-  // animate scale back to the card size and position
-  cover.style.transform = 'scaleX('+1+') scaleY('+1+') translate3d('+(0)+'px, '+(0)+'px, 0px)';
-  setTimeout(function() {
-    // set content back to empty
-    openContentText.innerHTML = '';
-    openContentImage.src = '';
-    // style the cover to 0x0 so it is hidden
-    cover.style.width = '0px';
-    cover.style.height = '0px';
-    pageIsOpen = false;
-    // remove the clicked class so the card animates back in
-    currentCard.className = currentCard.className.replace(' clicked', '');
-  }, 301);
-}
 
-function setCoverPosition(cardPosition) {
-  // style the cover so it is in exactly the same position as the card
-  cover.style.left = cardPosition.left + 'px';
-  cover.style.top = cardPosition.top + 'px';
-  cover.style.width = cardPosition.width + 'px';
-  cover.style.height = cardPosition.height + 'px';
-}
+        var cardPosition = card.getBoundingClientRect();
+        // get the style of the clicked card
+        var cardStyle = getComputedStyle(card);
+        setCoverPosition(cardPosition);
+        setCoverColor(cardStyle);
+        scaleCoverToFillWindow(cardPosition);
+        // update the content of the opened page
+        openContentText.innerHTML = '<h1>' + card.children[2].textContent + '</h1>' + q[i];
+        openContentImage.src = card.children[1].src;
+        setTimeout(function () {
+          // update the scroll position to 0 (so it is at the top of the 'opened' page)
+          window.scroll(0, 0);
+          // set page to open
+          pageIsOpen = true;
+        }, 300);
+      }
 
-function setCoverColor(cardStyle) {
-  // style the cover to be the same color as the card
-  cover.style.backgroundColor = cardStyle.backgroundColor;
-}
+      function animateCoverBack(card) {
+        var cardPosition = card.getBoundingClientRect();
+        // the original card may be in a different position, because of scrolling, so the cover position needs to be reset before scaling back down
+        setCoverPosition(cardPosition);
+        scaleCoverToFillWindow(cardPosition);
+        // animate scale back to the card size and position
+        cover.style.transform = 'scaleX(' + 1 + ') scaleY(' + 1 + ') translate3d(' + (0) + 'px, ' + (0) + 'px, 0px)';
+        setTimeout(function () {
+          // set content back to empty
+          openContentText.innerHTML = '';
+          openContentImage.src = '';
+          // style the cover to 0x0 so it is hidden
+          cover.style.width = '0px';
+          cover.style.height = '0px';
+          pageIsOpen = false;
+          // remove the clicked class so the card animates back in
+          currentCard.className = currentCard.className.replace(' clicked', '');
+        }, 301);
+      }
 
-function scaleCoverToFillWindow(cardPosition) {
-  // calculate the scale and position for the card to fill the page,
-  var scaleX = windowWidth / cardPosition.width;
-  var scaleY = windowHeight / cardPosition.height;
-  var offsetX = (windowWidth / 2 - cardPosition.width / 2 - cardPosition.left) / scaleX;
-  var offsetY = (windowHeight / 2 - cardPosition.height / 2 - cardPosition.top) / scaleY;
-  // set the transform on the cover - it will animate because of the transition set on it in the CSS
-  cover.style.transform = 'scaleX('+scaleX+') scaleY('+scaleY+') translate3d('+(offsetX)+'px, '+(offsetY)+'px, 0px)';
-}
+      function setCoverPosition(cardPosition) {
+        // style the cover so it is in exactly the same position as the card
+        cover.style.left = cardPosition.left + 'px';
+        cover.style.top = cardPosition.top + 'px';
+        cover.style.width = cardPosition.width + 'px';
+        cover.style.height = cardPosition.height + 'px';
+      }
 
-/* When the close is clicked */
-function onCloseClick() {
-  // remove the open class so the page content animates out
-  openContent.className = openContent.className.replace(' open', '');
-  // animate the cover back to the original position card and size
-  animateCoverBack(currentCard);
-  // animate in other cards
-  animateOtherCards(currentCard, false);
-}
+      function setCoverColor(cardStyle) {
+        // style the cover to be the same color as the card
+        cover.style.backgroundColor = cardStyle.backgroundColor;
+      }
 
-function animateOtherCards(card, out) {
-  var delay = 100;
-  for (var i = 0; i < nCards; i++) {
-    // animate cards on a stagger, 1 each 100ms
-    if (cards[i] === card) continue;
-    if (out) animateOutCard(cards[i], delay);
-    else animateInCard(cards[i], delay);
-    delay += 100;
-  }
-}
+      function scaleCoverToFillWindow(cardPosition) {
+        // calculate the scale and position for the card to fill the page,
+        var scaleX = windowWidth / cardPosition.width;
+        var scaleY = windowHeight / cardPosition.height;
+        var offsetX = (windowWidth / 2 - cardPosition.width / 2 - cardPosition.left) / scaleX;
+        var offsetY = (windowHeight / 2 - cardPosition.height / 2 - cardPosition.top) / scaleY;
+        // set the transform on the cover - it will animate because of the transition set on it in the CSS
+        cover.style.transform = 'scaleX(' + scaleX + ') scaleY(' + scaleY + ') translate3d(' + (offsetX) + 'px, ' + (offsetY) + 'px, 0px)';
+      }
 
-// animations on individual cards (by adding/removing card names)
-function animateOutCard(card, delay) {
-  setTimeout(function() {
-    card.className += ' out';
-   }, delay);
-}
+      /* When the close is clicked */
+      function onCloseClick() {
+        // remove the open class so the page content animates out
+        openContent.className = openContent.className.replace(' open', '');
+        // animate the cover back to the original position card and size
+        animateCoverBack(currentCard);
+        // animate in other cards
+        animateOtherCards(currentCard, false);
+      }
 
-function animateInCard(card, delay) {
-  setTimeout(function() {
-    card.className = card.className.replace(' out', '');
-  }, delay);
-}
+      function animateOtherCards(card, out) {
+        var delay = 100;
+        for (var i = 0; i < nCards; i++) {
+          // animate cards on a stagger, 1 each 100ms
+          if (cards[i] === card) continue;
+          if (out) animateOutCard(cards[i], delay);
+          else animateInCard(cards[i], delay);
+          delay += 100;
+        }
+      }
 
-// this function searches up the DOM tree until it reaches the card element that has been clicked
-function getCardElement(el) {
-  if (el.className.indexOf('card ') > -1) return el;
-  else return getCardElement(el.parentElement);
-}
+      // animations on individual cards (by adding/removing card names)
+      function animateOutCard(card, delay) {
+        setTimeout(function () {
+          card.className += ' out';
+        }, delay);
+      }
 
-// resize function - records the window width and height
-function resize() {
-  if (pageIsOpen) {
-    // update position of cover
-    var cardPosition = currentCard.getBoundingClientRect();
-    setCoverPosition(cardPosition);
-    scaleCoverToFillWindow(cardPosition);
-  }
-  windowWidth = window.innerWidth;
-  windowHeight = window.innerHeight;
-}
+      function animateInCard(card, delay) {
+        setTimeout(function () {
+          card.className = card.className.replace(' out', '');
+        }, delay);
+      }
 
-var paragraphText = '<p>Somebody once told me the world is gonna roll me. I ain\'t the sharpest tool in the shed. She was looking kind of dumb with her finger and her thumb in the shape of an "L" on her forehead. Well the years start coming and they don\'t stop coming. Fed to the rules and I hit the ground running. Didn\'t make sense not to live for fun. Your brain gets smart but your head gets dumb. So much to do, so much to see. So what\'s wrong with taking the back streets? You\'ll never know if you don\'t go. You\'ll never shine if you don\'t glow.</p><p>Hey now, you\'re an all-star, get your game on, go play. Hey now, you\'re a rock star, get the show on, get paid. And all that glitters is gold. Only shooting stars break the mold.</p><p>It\'s a cool place and they say it gets colder. You\'re bundled up now, wait till you get older. But the meteor men beg to differ. Judging by the hole in the satellite picture. The ice we skate is getting pretty thin. The water\'s getting warm so you might as well swim. My world\'s on fire, how about yours? That\'s the way I like it and I never get bored.</p>';
+      // this function searches up the DOM tree until it reaches the card element that has been clicked
+      function getCardElement(el) {
+        if (el.className.indexOf('card ') > -1) return el;
+        else return getCardElement(el.parentElement);
+      }
+
+      // resize function - records the window width and height
+      function resize() {
+        if (pageIsOpen) {
+          // update position of cover
+          var cardPosition = currentCard.getBoundingClientRect();
+          setCoverPosition(cardPosition);
+          scaleCoverToFillWindow(cardPosition);
+        }
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+      }
+
+      var paragraphText = '<p>Somebody once told me the world is gonna roll me. I ain\'t the sharpest tool in the shed. She was looking kind of dumb with her finger and her thumb in the shape of an "L" on her forehead. Well the years start coming and they don\'t stop coming. Fed to the rules and I hit the ground running. Didn\'t make sense not to live for fun. Your brain gets smart but your head gets dumb. So much to do, so much to see. So what\'s wrong with taking the back streets? You\'ll never know if you don\'t go. You\'ll never shine if you don\'t glow.</p><p>Hey now, you\'re an all-star, get your game on, go play. Hey now, you\'re a rock star, get the show on, get paid. And all that glitters is gold. Only shooting stars break the mold.</p><p>It\'s a cool place and they say it gets colder. You\'re bundled up now, wait till you get older. But the meteor men beg to differ. Judging by the hole in the satellite picture. The ice we skate is getting pretty thin. The water\'s getting warm so you might as well swim. My world\'s on fire, how about yours? That\'s the way I like it and I never get bored.</p>';
     </script>
 
-  </body>
+</body>
 
 </html>
