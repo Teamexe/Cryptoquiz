@@ -751,13 +751,7 @@ nav .menu .menu_icon:hover .icon:after {
   /* color: #fff; */
   font-size: 15px;
 }
-#submitAnswer{
-  background: #210149;
-  color: #fff;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-}
+
 .arrow{
   transform: translate(0px, -1px);
 }
