@@ -79,17 +79,16 @@ section{
   align-items: center;
   position: relative;
 } */
-.answer-bar{
+/* .answer-bar{
 
   position: absolute;
   top: 80%;
   left: 50%;
   transform: translate(-30%, -50%);
   width: 100%;
-}
+} */
 
-#submitAnswer{
-  /* background: #1E4D92; */
+/* #submitAnswer{
   color: #fff;
   border-radius: 50%;
   width: 30px;
@@ -97,9 +96,9 @@ section{
 }
 .arrow{
   transform: translate(-8px, -1px);
-}
+} */
 
-.answer{
+/* .answer{
   background: #ddd;
   margin-left: 7%;
   opacity: 0.8;
@@ -109,8 +108,12 @@ section{
   border: 0;
   border-bottom: 2px #777 solid;
   display: inline;
-  /* left: 22%;
-  top: 40%; */
+  
+} */
+
+.answer-bar{
+  position: absolute;
+  bottom: 0;
 }
 
 .navbar-brand{
