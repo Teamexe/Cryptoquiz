@@ -332,9 +332,16 @@ app.get("/developers",(req,res)=>{
     });
 });
 app.get("/cryptoboard",(req,res)=>{
-    res.render("leaderboard",{
-        name:req.session.player.playerName,
-        identity:req.session.player.email,
-        csrfToken: req.csrfToken()
-    });
+    BlockModel.find({})
+        .then((result)=>{
+            res.render("leaderboard",{
+                name:req.session.player.playerName,
+                identity:req.session.player.email,
+                csrfToken: req.csrfToken(),
+                answer: result
+            });
+        })
+        .catch(err=>{
+            console.log(err)
+        })
 });

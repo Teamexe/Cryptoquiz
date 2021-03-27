@@ -87,15 +87,15 @@ left: 0;">
         </div>
         <div class="card card-color-2">
           <div class="border"></div>
-          <img src="Assets/imgs/2.jpg" />
-          <h1>Question- 2 Title</h1>
+          <img src="Assets/imgs/3.jpg" />
+          <h1>Question- 3 Title</h1>
         </div>
       </div>
       <div class="card-column column-1">
         <div class="card card-color-1">
           <div class="border"></div>
-          <img src="Assets/imgs/3.jpg" />
-          <h1>Question- 3 Title</h1>
+          <img src="Assets/imgs/2.jpg" />
+          <h1>Question- 2 Title</h1>
         </div>
         <div class="card card-color-3">
           <div class="border"></div>
@@ -156,7 +156,7 @@ left: 0;">
         q[2] = ques3;
         q[3] = ques4;
 
-        console.log({ ques1, ques2, ques3, ques4 })
+        // console.log({ ques1, ques2, ques3, ques4 })
       }
 
       const submitButton = document.querySelector('#submitAnswer')
@@ -167,26 +167,28 @@ left: 0;">
 
       submitButton.addEventListener('click', e => {
         e.preventDefault;
-        let data1 = document.querySelector('#exampleInputNumber').value;
-        let data2 = document.querySelector('.navbar span').firstChild.nodeValue;
+        let data1 = document.querySelector('#exampleInputNumber').value.trim();
+        let data2 = document.querySelector('.navbar span').firstChild.nodeValue.trim();
         let data = {
           answer: data1,
           identity: data2
         }
+        console.log(data)
         socket.emit('answer', data);
       })
 
       socket.on('Submission', value => {
-        // window.scrollTo(0,0);
+        window.scrollTo(0,0);
+        console.log(value);
         if (value) {
           //Make a dom element whose visibility changes from hidden and it says correct submission
           console.log('correct submission');
-          // let a = document.getElementById("correct-submission");
-          // a.style.visibility = "visible";
+          let a = document.getElementById("correct-submission");
+          a.style.visibility = "visible";
         } else {
           console.log('Wrong Submission');
-          // let b = document.getElementById("incorrect-submission");
-          // b.style.visibility = "visible";
+          let b = document.getElementById("incorrect-submission");
+          b.style.visibility = "visible";
         }
       })
 
@@ -268,11 +270,11 @@ left: 0;">
         // get the position of the clicked card
 
 
-        console.log(card);
+        // console.log(card);
         var c = card.classList[1];
-        console.log(typeof (c.split("-")[2]));
+        // console.log(typeof (c.split("-")[2]));
         var i = parseInt(c.split("-")[2]);
-        console.log(q[i]);
+        // console.log(q[i]);
 
 
         var cardPosition = card.getBoundingClientRect();
