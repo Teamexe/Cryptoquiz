@@ -12,12 +12,7 @@ const colors = {
   0: '#FF8700',
 }
 
-const arr = document.querySelector('.hack').firstChild.nodeValue.trim().split(',')
-console.log(arr)
-arr = arr.map((element)=>{
-  element.trim()
-})
-console.log(arr)
+
 
 // array describing the drivers, sorted by position and with a gap describing the distance from the leading driver
 const leaderboard = [

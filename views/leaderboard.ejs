@@ -59,7 +59,6 @@
       </form>
     </nav>
   </div>
-
   <h1 class="h1">CRYPTOBOARD</h1>
   <div class="leader">
     <table>
@@ -81,10 +80,7 @@
             <% } %>
               <div class="hack" style="background-color: white;">
                 <% for(let i=0;i < arr.length; i++) { %>
-                  <%= arr[i].name %>
-                    <%= arr[i].roll %>
-                      <%= arr[i].points %>
-                        <%= arr[i].timestamp %>,
+                  <%= arr[i].name %>,<%= arr[i].roll %>,<%= arr[i].points %>,<%= arr[i].timestamp %>,
                           <% } %>
               </div>
     </table>
