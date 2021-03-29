@@ -4,13 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start" : "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Teamexe/Cryptoquiz.git"
   },
-  "author": "Dhruv Panwar",
+  "author": "Team .EXE",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Teamexe/Cryptoquiz/issues"
