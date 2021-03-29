@@ -38,7 +38,7 @@ left: 0;">
   </video>
   <div class="c-submission" id="correct-submission">
     <div class="center">
-      <h2><span class="green">
+      <h2><span style="color: green;">
           <!--<i class="fa fa-times mx-3"></i>--> <i class="fa fa-check-square-o green mx-4"></i>Your submission is
           correct.
         </span>
@@ -47,8 +47,16 @@ left: 0;">
   </div>
   <div class="c-submission" id="incorrect-submission">
     <div class="center">
-      <h2><span class="red">
+      <h2><span style="color: red;">
           <i class="fa fa-times mx-3 red"></i> Your submission is incorrect.
+        </span>
+      </h2>
+    </div>
+  </div>
+  <div class="c-submission" id="others-submission">
+    <div class="center">
+      <h2><span style="color: orange;">
+          <!--<i class="fa fa-times mx-3"></i>--> <i class="fa fa-clock-o green mx-4"></i>Someone else submitted before you :(
         </span>
       </h2>
     </div>
@@ -77,7 +85,7 @@ left: 0;">
       </div>
     </nav>
   </div>
-  <div class="row">
+  <div class="row" id="questions">
     <div class="container">
       <div class="card-column column-0">
         <div class="card card-color-0">
@@ -139,6 +147,12 @@ left: 0;">
     <!-- <script type="text/javascript" src="JS/quiz.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      function popnext(a){
+        document.getElementById('questions').style.visibility = 'visible';
+          a.style.visibility = "hidden";
+          document.body.style.overflowY = "visible";
+      }
+
       var q = [];
       var i;
       const populate = ({ ques1, ques2, ques3, ques4 }) => {
@@ -176,26 +190,32 @@ left: 0;">
         console.log(data)
         socket.emit('answer', data);
       })
-
       socket.on('Submission', value => {
+        document.getElementById('questions').style.visibility = 'hidden';
+        document.body.style.overflowY = "hidden";
         window.scrollTo(0,0);
-        console.log(value);
+        let a;
         if (value) {
           //Make a dom element whose visibility changes from hidden and it says correct submission
           console.log('correct submission');
-          let a = document.getElementById("correct-submission");
+          a = document.getElementById("correct-submission");
           a.style.visibility = "visible";
         } else {
           console.log('Wrong Submission');
-          let b = document.getElementById("incorrect-submission");
-          b.style.visibility = "visible";
+          a = document.getElementById("incorrect-submission");
+          a.style.visibility = "visible";
         }
+        setTimeout(() => {  popnext(a); }, 5000);
       })
 
       socket.on('elseSubmission', () => { //Listening for others submissions
         console.log('Someone else submitted');
-        // let a = document.getElementById("correct-submission");
-        //   a.style.visibility = "visible";
+        let a = document.getElementById("others-submission");
+          a.style.visibility = "visible";
+          document.getElementById('questions').style.visibility = 'hidden';
+          document.body.style.overflowY = "hidden";
+          window.scrollTo(0,0);
+          setTimeout(() => {  popnext(a); }, 5000);
       })
 
 
