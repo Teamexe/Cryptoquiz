@@ -38,18 +38,36 @@ left: 0;">
     <source src="Assets/imgs/bgvideo.mp4" type="video/mp4">
   </video>
   <div class="c-submission" id="correct-submission">
-    <div class="center">
-      <h2><span style="color: green;">
-          <!--<i class="fa fa-times mx-3"></i>--> <i class="fa fa-check-square-o green mx-4"></i>Your submission is
-          correct.
+    <div style="background-color: #00000052;" class="center">
+      <h2><span style="color: #01d601;">
+        <img class="correct-sol" style="display: block;" src="Assets/imgs/correct.gif" alt="">
+          <!--<i class="fa fa-times mx-3"></i>--> 
+          <!-- <i class="fa fa-check-square-o green mx-4"></i> -->
+          Your submission is correct.
+          <br>
+          <div style="font-size: 16px; margin-top: 15px;color: white;" class="red">
+            Your are being redirected to next round in 5 secs....
+          </div>
+
+          <!-- <button id="next-round">
+            Next Round
+          </button> -->
+
         </span>
       </h2>
     </div>
   </div>
   <div class="c-submission" id="incorrect-submission">
-    <div class="center">
-      <h2><span style="color: red;">
-          <i class="fa fa-times mx-3 red"></i> Your submission is incorrect.
+    <div style="background-color: #00000052;" class="center">
+      <h2><span style="color: #dc1313;">
+          <!-- <i class="fa fa-times mx-3 red"></i> -->
+          <i class="far fa-times-circle mx-3"></i>
+          <br>
+           Your submission is incorrect.
+          <br>
+          <div style="font-size: 16px; margin-top: 20px;color: white;" class="red">
+            Your are being redirected to next round in 5 secs....
+          </div>
         </span>
       </h2>
     </div>
@@ -57,7 +75,7 @@ left: 0;">
   <div class="c-submission" id="others-submission">
     <div class="center">
       <h2><span style="color: orange;">
-          <!--<i class="fa fa-times mx-3"></i>--> <i class="fa fa-clock-o green mx-4"></i>Someone else submitted before you :(
+          <!--<i class="fa fa-times mx-3"></i>--> <i style="display: block; ;font-size: 125px;color: white;padding-bottom: 20px;" class="fa fa-clock-o green mx-4"></i>Someone else submitted before you :(
         </span>
       </h2>
     </div>
@@ -153,8 +171,10 @@ left: 0;">
     <script src="/socket.io/socket.io.js"></script>
     <script>
       function popnext(a){
+        console.log('abc');
         document.getElementById('questions').style.visibility = 'visible';
           a.style.visibility = "hidden";
+          // document.getElementsByClassName("navigation-bar")[0].style.backgroundColor = "transparent";
           document.body.style.overflowY = "visible";
       }
 
@@ -200,6 +220,7 @@ left: 0;">
         document.body.style.overflowY = "hidden";
         window.scrollTo(0,0);
         let a;
+        // document.getElementsByClassName("navigation-bar")[0].style.backgroundColor = "black";
         if (value) {
           //Make a dom element whose visibility changes from hidden and it says correct submission
           console.log('correct submission');
@@ -215,6 +236,7 @@ left: 0;">
 
       socket.on('elseSubmission', () => { //Listening for others submissions
         console.log('Someone else submitted');
+        // document.getElementsByClassName("navigation-bar")[0].style.backgroundColor = "black";
         let a = document.getElementById("others-submission");
           a.style.visibility = "visible";
           document.getElementById('questions').style.visibility = 'hidden';
