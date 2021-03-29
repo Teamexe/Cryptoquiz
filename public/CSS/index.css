@@ -355,7 +355,7 @@ nav .menu .menu_icon:hover .icon:after {
   height: 130vh;
   overflow: hidden;
   margin-top: -60px;
-  z-index: -1;
+  z-index: 1;
 }
 .wrapper .container {
   margin: 0 auto;
