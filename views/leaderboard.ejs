@@ -46,18 +46,27 @@
   </video>
 
   <div class="navigation-bar">
-    <nav class="navbar navbar-light justify-content-between">
-      <a class="navbar-brand">Hello <%=name%></a>
-      <span style="visibility:hidden" id="identity">
-        <%=identity %>
-      </span>
-      <form action="/logout" method="post">
-        <input hidden type="text" name="_csrf" value="<%=csrfToken%>">
-        <a href="/cryptoboard" class="btn btn-primary button lbutton">Cryptoboard</a>
-        <a href="/quiz" class="btn btn-primary button lbutton">Quiz</a>
-        <button type="submit" class="btn btn-primary button lbutton">Logout</a>
-          <!-- <a href="#" class="btn btn-success">Register</a> -->
-      </form>
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+      <div class="container-fluid">
+        <a class="navbar-brand">Hello <%=name%></a>
+        <span style="visibility:hidden" id="identity">
+          <%=identity %>
+        </span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form action="/logout" method="post">
+            <input hidden type="text" name="_csrf" value="<%=csrfToken%>">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a href="/quiz" class="btn btn-primary button lbutton">Quiz</a></li>
+              <li class="nav-item"><a href="/developers" class="btn btn-primary button lbutton">Developers</a></li>
+              <li class="nav-item"><button type="submit" class="btn btn-primary button lbutton">Logout</a></li>
+            </ul>
+          </form>
+        </div>
+      </div>
     </nav>
   </div>
   <h1 class="h1">CRYPTOBOARD</h1>
