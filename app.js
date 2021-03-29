@@ -216,8 +216,10 @@ app.get('/verify/:token',(req,res)=>{
 })
 
 
-const server = app.listen('3000',()=>{
-    console.log("App listening at 3000")
+const port = process.env.PORT || 3000
+
+const server = app.listen(port,()=>{
+    console.log(`App listening at ${port}`);
 })
 
 numbers = [0,1,2,3]; //Initially display first four questions. Later change to question Numbers which are currently live in the quiz

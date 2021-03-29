@@ -67,7 +67,6 @@ table {
     font-weight: 500;
   }
   table td.driver span {
-    text-transform: capitalize;
     margin-left: 0.75rem;
     font-size: 0.8rem;
     color: #999;
@@ -76,7 +75,7 @@ table {
   
   /* style the span nested in the last cell to have the gap in a rounded rectangle */
   table td.gap span {
-    background: #0b3e57;
+    background: #0a5f88;
     border-radius: 30px;
     padding: 0.5rem 0.75rem;
     font-size: 0.8rem;

@@ -76,11 +76,12 @@
       <% let arr=[] %>
         <% for(let i=0;i < answer.length; i++) { %>
           <% arr.push({name:answer[i].name , roll:answer[i].email, time: answer[i].timestamp, points: answer[i].points})
-            %>
-            <% } %>
-              <div class="hack" style="background-color: white;">
+          %>
+          <% } %>
+          <%= arr[0].timestamp %>
+              <div class="hack" style="background-color: white; visibility: hidden; height: 0;">
                 <% for(let i=0;i < arr.length; i++) { %>
-                  <%= arr[i].name %>,<%= arr[i].roll %>,<%= arr[i].points %>,<%= arr[i].timestamp %>,
+                  <%= arr[i].name %>-<%= arr[i].roll %>-<%= arr[i].points %>-<%= arr[i].timestamp %>,
                           <% } %>
               </div>
     </table>
@@ -94,11 +95,87 @@
       return element.trim();
     })
     let finalArray = [];
-    for(let i=0 ; i < arr.length; i++){
-      newArray = arr[i].split(' ');
+    for(let i=0 ; i < arr.length - 1; i++){
+      newArray = arr[i].split('-');
       finalArray.push({name:newArray[0],roll: newArray[1],point: newArray[2], timestamp: newArray[3]})
     }
     console.log(finalArray);
+
+
+
+  //  js code
+  const colors = {
+  17: '#F596C8',
+  18: '#00D2BE',
+  19: '#DC0000',
+  20: '#FFF500',
+  21: '#1E41FF',
+  22: '#9B0000',
+  23: '#469BFF',
+
+  0: '#FF8700',
+}
+
+
+
+// array describing the drivers, sorted by position and with a gap describing the distance from the leading driver
+const leaderboard = finalArray;
+
+// target the table element in which to add one div for each driver
+const main = d3.select('table');
+
+// for each driver add one table row
+// ! add a class to the row to differentiate the rows from the existing one
+// otherwise the select method would target the existing one and include one row less than the required amount
+const drivers = main
+  .selectAll('tr.driver')
+  .data(leaderboard)
+  .enter()
+  .append('tr')
+  .attr('class', 'driver');
+
+// in each row add the information specified by the dataset in td elements
+// specify a class to style the elements differently with CSS
+
+// position using the index of the data points
+drivers
+  .append('td')
+  .text((d, i) => i + 1)
+  .attr('class', 'position');
+
+
+// name followed by the team
+drivers
+  .append('td')
+  // include the last name in a separate element to style it differently
+  // include the team also in another element for the same reason
+  .html(({ name  , roll}) => `${name.split(' ').map((part, index) => index > 0 ? `<strong>${part}</strong>` : `${part}`).join(' ')}<span>${roll}</span><hr>`)
+  // include a border with the color matching the team
+  .style('border-left', ({ roll }) => {
+    // find the color using the string value found in d.team
+    // ! if the string value has a space, camelCase the value
+    // console.log({roll})
+    if(roll)
+    {var f = roll.substring(0, 2);
+    // console.log(f)
+    var color = f.split(' ').map((word, index) => index > 0 ? `${word[0].toUpperCase()}${word.slice(1)}` : `${word}`).join('');
+    if (!colors[color]) color = '0';
+    }else{
+      color = '0';
+    }
+    return `4px solid ${colors[color]}`;
+  })
+  .attr('class', 'driver');
+
+// gap from the first driver
+drivers
+  .append('td')
+  .attr('class', 'gap')
+  .append('span')
+  .text(({ time }) => '27th March 25:16PM');
+
+
+
   </script>
   <!-- 
       <script src="js/leaderboard.js"></script> -->
