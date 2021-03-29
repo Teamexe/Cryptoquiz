@@ -528,3 +528,10 @@ a span:nth-child(2) {
 }
 
 /*Submission Checking Ends*/
+
+
+
+
+.close-content i:hover{
+  color: black;
+}
