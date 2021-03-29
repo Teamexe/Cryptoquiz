@@ -216,8 +216,10 @@ app.get('/verify/:token',(req,res)=>{
 })
 
 
-const server = app.listen('3000',()=>{
-    console.log("App listening at 3000")
+const port = process.env.PORT || 3000
+
+const server = app.listen(port,()=>{
+    console.log(`App listening at ${port}`);
 })
 
 numbers = [0,1,2,3]; //Initially display first four questions. Later change to question Numbers which are currently live in the quiz
@@ -276,7 +278,7 @@ io.on('connect',socket=>{
                             .then(()=>{
                                 // prompt him saying correct answer and prompt others saying someone else submitted
                                 socket.emit('Submission',true);
-                                io.emit('elseSubmission');
+                                socket.broadcast.emit('elseSubmission');
                                 BlockModel.find({}).sort({ _id: -1 }).limit(1)
                                 .then((prevBlock)=>{
                                     let prevHash;

@@ -70,8 +70,8 @@
   #tilesView {
     min-height: 100vh;
     width: 100vw;
-    background: rgb(246,210,106);
-    background: linear-gradient(111deg, rgba(246,210,106,1) 0%, rgba(255,159,0,1) 52%, rgba(251,197,100,1) 100%);
+    background: rgb(106, 162, 246);
+    /* background: linear-gradient(111deg, rgba(246,210,106,1) 0%, rgba(255,159,0,1) 52%, rgba(251,197,100,1) 100%); */
     display: none;
     justify-content: center;
     align-items: center;
@@ -126,7 +126,7 @@
     height: 350px;
     width: 350px;  
     border-radius: 5px;
-    background-color: #eb9100;
+    background-color: #0095eb;
     margin-left: 10px;
     margin-right: 10px;
     z-index: 1;
@@ -154,7 +154,7 @@
     border-radius: 5px;
     transform: skewy(5deg);
     transform-origin: top right;
-    background-color: #eb9100;
+    background-color: #00abc9;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,7 +173,7 @@
     border-radius: 5px;
     transform: skewy(-5deg);
     transform-origin: top left;
-    background-color: #eb9100;
+    background-color: #00abc9;
     display: flex;
     justify-content: center;
     align-items: center;
