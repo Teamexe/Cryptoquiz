@@ -278,7 +278,7 @@ io.on('connect',socket=>{
                             .then(()=>{
                                 // prompt him saying correct answer and prompt others saying someone else submitted
                                 socket.emit('Submission',true);
-                                io.emit('elseSubmission');
+                                socket.broadcast.emit('elseSubmission');
                                 BlockModel.find({}).sort({ _id: -1 }).limit(1)
                                 .then((prevBlock)=>{
                                     let prevHash;

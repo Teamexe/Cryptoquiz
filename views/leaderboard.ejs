@@ -76,13 +76,13 @@
       </tr>
       <% let arr=[] %>
         <% for(let i=0;i < answer.length; i++) { %>
-          <% arr.push({name:answer[i].name , roll:answer[i].email, time: answer[i].timestamp, points: answer[i].points})
+          <% arr.push({name:answer[i].name , roll:answer[i].email, points: answer[i].points, time: answer[i].timestamp})
           %>
           <% } %>
           <%= arr[0].timestamp %>
               <div class="hack" style="background-color: white; visibility: hidden; height: 0;">
                 <% for(let i=0;i < arr.length; i++) { %>
-                  <%= arr[i].name %>-<%= arr[i].roll %>-<%= arr[i].points %>-<%= arr[i].timestamp %>,
+                  <%= arr[i].name %>-<%= arr[i].roll %>-<%= arr[i].points %>-<%= arr[i].time %>,
                           <% } %>
               </div>
     </table>
@@ -92,7 +92,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
   <script>
     let arr = document.querySelector('.hack').firstChild.nodeValue.trim().split(',')
-    console.log(arr)
     arr = arr.map((element) => {
       return element.trim();
     })
