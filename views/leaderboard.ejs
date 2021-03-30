@@ -111,7 +111,7 @@
       newArray = arr[i].split('-');
       finalArray.push({name:newArray[0],roll: newArray[1],point: newArray[2], timestamp: newArray[3]})
     }
-    console.log(finalArray);
+    // console.log({finalArray});
 
 
 
@@ -128,7 +128,7 @@
   0: '#FF8700',
 }
 
-
+finalArray.reverse();
 
 // array describing the drivers, sorted by position and with a gap describing the distance from the leading driver
 const leaderboard = finalArray;
@@ -161,7 +161,7 @@ drivers
   .append('td')
   // include the last name in a separate element to style it differently
   // include the team also in another element for the same reason
-  .html(({ name  , roll}) => `${name.split(' ').map((part, index) => index > 0 ? `<strong>${part}</strong>` : `${part}`).join(' ')}<span>${roll}</span><hr>`)
+  .html(({ name  , roll}) => `${name.split(' ').map((part, index) => index > 0 ? `${part}` : `${part}`).join(' ')}<span>${roll}</span><hr>`)
   // include a border with the color matching the team
   .style('border-left', ({ roll }) => {
     // find the color using the string value found in d.team
@@ -184,7 +184,12 @@ drivers
   .append('td')
   .attr('class', 'gap')
   .append('span')
-  .text(({ time }) => '27th March 25:16PM');
+  .text(({ timestamp }) => {
+    var date = timestamp.split(' ');
+    var time = date[4].split(':');
+    var a = `${date[2]} ${date[1]} ${date[3]} ${time[0]}:${time[1]} (IST)`
+    return a;
+  });
 
 
 
