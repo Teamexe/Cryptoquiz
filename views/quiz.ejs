@@ -112,7 +112,7 @@ left: 0;">
       </div>
     </nav>
   </div>
-  <h1 class="text-center text-capitalize pt-5" style="color: #fff; transform: translateY(50px);">Round X/10</h1>
+  <h1 class="text-center text-capitalize pt-5" id="round" style="color: #fff; transform: translateY(50px);">Round X/10</h1>
   <hr style="font-weight: bold; transform: translateY(50px);" class="w-25 mx-auto">
   <div class="row" id="questions">
     <div class="container">
@@ -190,6 +190,7 @@ left: 0;">
 
       var q = [];
       var i;
+      var round=-2;
       const populate = ({ ques1, ques2, ques3, ques4,roundNumber }) => {
         // Ques1 = document.querySelector('#q1').firstChild
         // Ques2 = document.querySelector('#q2').firstChild
@@ -204,7 +205,8 @@ left: 0;">
         q[1] = ques2;
         q[2] = ques3;
         q[3] = ques4;
-        console.log(roundNumber);
+        round = roundNumber;
+        document.querySelector('#round').firstChild.nodeValue = roundNumber;
 
         // console.log({ ques1, ques2, ques3, ques4 })
       }
@@ -255,17 +257,23 @@ left: 0;">
           window.scrollTo(0,0);
           setTimeout(() => {  popnext(a); }, 5000);
       })
-      
+      let lastSubmission = false;
       socket.on('finish',data=>{
+        console.log("Finished")
+        let t = 5500;
         if(data){
+          console.log(lastSubmission);
+          if(round==-2){
+            t = 0;
+          }
+          lastSubmission = true;
           setTimeout(()=>{
-          console.log("Finished")
           let a = document.getElementById("quiz-end");
           a.style.visibility = "visible";
           document.getElementById('questions').style.visibility = 'hidden';
           document.body.style.overflowY = "hidden";
           window.scrollTo(0,0);
-        }, 5500);}
+        }, t);}
       })
 
       // listing vars here so they're in the global scope

@@ -248,7 +248,16 @@ io.on('connect',socket=>{
                 io.emit('question',myObj);
             }
             else{
+                roundNumber = -1;
                 numbers = null;
+                const obj = {
+                    ques1: null,
+                    ques2: null,
+                    ques3: null,
+                    ques4: null,
+                    roundNumber:-1
+                }
+                io.emit('question',obj);
                 io.emit('finish', true);
             }
         })
@@ -336,6 +345,7 @@ io.on('connect',socket=>{
             }
             else{
                 console.log('Numbers is null');
+                roundNumber = -1;
                 io.emit('finish', true);
             }
         }
