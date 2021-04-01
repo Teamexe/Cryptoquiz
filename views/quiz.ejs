@@ -83,7 +83,7 @@ left: 0;">
   <div class="c-submission" id="quiz-end">
     <div class="center">
       <h2><span style="color: blue;">
-          <!--<i class="fa fa-times mx-3"></i>--> <i style="display: block; ;font-size: 125px;color: white;padding-bottom: 20px;" class="fa fa-clock-o green mx-4"></i>Quiz has ended.
+          <!--<i class="fa fa-times mx-3"></i>--> <img class="correct-sol" style="display: block;" src="Assets/imgs/finish.png" alt="">Quiz has ended.
         </span>
       </h2>
     </div>
@@ -180,6 +180,7 @@ left: 0;">
     <!-- <script type="text/javascript" src="JS/quiz.js"></script> -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      let flag1 = 1;
       function popnext(a){
         // console.log('abc');
         document.getElementById('questions').style.visibility = 'visible';
@@ -245,6 +246,7 @@ left: 0;">
           a.style.visibility = "visible";
         }
         setTimeout(() => {  popnext(a); }, 5000);
+        flag1 = 0;
       })
 
       socket.on('elseSubmission', () => { //Listening for others submissions
@@ -256,15 +258,16 @@ left: 0;">
           document.body.style.overflowY = "hidden";
           window.scrollTo(0,0);
           setTimeout(() => {  popnext(a); }, 5000);
+          flag1 =0;
       })
       let lastSubmission = false;
       socket.on('finish',data=>{
         console.log("Finished")
-        let t = 5500;
+        let t = 0;
         if(data){
           console.log(lastSubmission);
-          if(round==-2){
-            t = 0;
+          if(flag1==0){
+            t = 5500;
           }
           lastSubmission = true;
           setTimeout(()=>{
