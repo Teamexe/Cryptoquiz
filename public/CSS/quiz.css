@@ -50,7 +50,7 @@ body{
     height: 100vh;		
 } */
 .navigation-bar{
-    z-index: 2;
+    z-index: 1000;
     position: absolute;
     top: 0;
     width: 100%;
