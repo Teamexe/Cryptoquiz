@@ -233,7 +233,7 @@ left: 0;">
           a = document.getElementById("incorrect-submission");
           a.style.visibility = "visible";
         }
-        setTimeout(() => {  popnext(a); }, 5000);
+        setTimeout(() => {  popnext(a); }, 2000);
       })
 
       socket.on('elseSubmission', () => { //Listening for others submissions
@@ -246,7 +246,12 @@ left: 0;">
           window.scrollTo(0,0);
           setTimeout(() => {  popnext(a); }, 5000);
       })
-
+      
+      socket.on('finish',data=>{
+        if(data){
+          console.log("Finished")
+        }
+      })
 
       // listing vars here so they're in the global scope
       var cards, nCards, cover, openContent, openContentText, pageIsOpen = false,

@@ -161,7 +161,7 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "http://localhost:3000/verify/${token}"> Verify your account</a> `
+                                    <p><a href = "https://cryptonith.herokuapp.com/verify/${token}"> Verify your account</a> `
                                 })
                             })
                             .catch((err)=>{
@@ -236,13 +236,20 @@ io.on('connect',socket=>{
     renderQuestions = (questionNumbers)=>{
         Question.find({quesNo:{$in:questionNumbers}})
         .then((data)=>{
-            const myObj = {
-                ques1:data[0].ques,
-                ques2:data[1].ques,
-                ques3:data[2].ques,
-                ques4:data[3].ques,
+            console.log(data)
+            if(data.length==4){
+                const myObj = {
+                    ques1:data[0].ques,
+                    ques2:data[1].ques,
+                    ques3:data[2].ques,
+                    ques4:data[3].ques,
+                }
+                io.emit('question',myObj);
             }
-            io.emit('question',myObj);
+            else{
+                numbers = null;
+                io.emit('finish', true);
+            }
         })
         .catch(err=>{
             console.log(err);
@@ -258,69 +265,79 @@ io.on('connect',socket=>{
         }
         else{
             answers = answers.map(x=> x = parseInt(x))
-            Question.find({quesNo:{$in:numbers}}) //check to see if further questions dont exist
-            .then((foundAnswers)=>{
-                let flag = true;
-                for(var i=0;i<foundAnswers.length;i++){
-                    if(foundAnswers[i].ans!=answers[i]){
-                        flag = false;
-                    }
-                }
-                if(flag){
-                    numbers = numbers.map(x=> x+=4)
-                    index++;
-                    renderQuestions(numbers);
-                    Player.findOne({email:data.identity})
-                    .then((foundUser)=>{
-                        if(foundUser){
-                            foundUser.points+=50;
-                            foundUser.save()
-                            .then(()=>{
-                                // prompt him saying correct answer and prompt others saying someone else submitted
-                                socket.emit('Submission',true);
-                                socket.broadcast.emit('elseSubmission');
-                                BlockModel.find({}).sort({ _id: -1 }).limit(1)
-                                .then((prevBlock)=>{
-                                    let prevHash;
-                                    if(prevBlock.length>0){
-                                        prevHash = prevBlock[0].hash;
-                                    }
-                                    else{
-                                        prevHash = null;
-                                    }
-                                    let newBlockObject = {
-                                        index:index,
-                                        name:foundUser.playerName,
-                                        timeStamp:Date.now(),
-                                        email:foundUser.email,
-                                        points:foundUser.points, 
-                                        prevHash: prevHash,
-                                    }
-                                    newBlockObject.hash = hash(newBlockObject);
-                                    let newBlock = new BlockModel(newBlockObject);
-                                    newBlock.save()
+            if(numbers!=null){
+                Question.find({quesNo:{$in:numbers}}) //check to see if further questions dont exist
+                .then((foundAnswers)=>{
+                    console.log(foundAnswers)
+                    if(foundAnswers.length>0){
+                        let flag = true;
+                        for(var i=0;i<foundAnswers.length;i++){
+                            if(foundAnswers[i].ans!=answers[i]){
+                                flag = false;
+                            }
+                        }
+                        if(flag){
+                            numbers = numbers.map(x=> x+=4)
+                            index++;
+                            renderQuestions(numbers);
+                            Player.findOne({email:data.identity})
+                            .then((foundUser)=>{
+                                if(foundUser){
+                                    foundUser.points+=50;
+                                    foundUser.save()
                                     .then(()=>{
-                                        console.log('Blockchain saved');
+                                        // prompt him saying correct answer and prompt others saying someone else submitted
+                                        socket.emit('Submission',true);
+                                        socket.broadcast.emit('elseSubmission');
+                                        BlockModel.find({}).sort({ _id: -1 }).limit(1)
+                                        .then((prevBlock)=>{
+                                            let prevHash;
+                                            if(prevBlock.length>0){
+                                                prevHash = prevBlock[0].hash;
+                                            }
+                                            else{
+                                                prevHash = null;
+                                            }
+                                            let newBlockObject = {
+                                                index:index,
+                                                name:foundUser.playerName,
+                                                timeStamp:Date.now(),
+                                                email:foundUser.email,
+                                                points:foundUser.points, 
+                                                prevHash: prevHash,
+                                            }
+                                            newBlockObject.hash = hash(newBlockObject);
+                                            let newBlock = new BlockModel(newBlockObject);
+                                            newBlock.save()
+                                            .then(()=>{
+                                                console.log('Blockchain saved');
+                                            })
+                                            .catch(err=>{
+                                                console.log(err);
+                                            })
+                                        })
+                                        .catch((err)=>{
+                                            console.log(err)
+                                        })
                                     })
                                     .catch(err=>{
-                                        console.log(err);
+                                        console.log(err)
                                     })
-                                })
-                                .catch((err)=>{
-                                    console.log(err)
-                                })
+                                }
                             })
-                            .catch(err=>{
-                                console.log(err)
-                            })
+                            .catch(err=> console.log(err))
                         }
-                    })
-                    .catch(err=> console.log(err))
-                }
-                else{
-                    socket.emit('Submission',false);
-                }
-            })
+                        else{
+                            socket.emit('Submission',false);
+                        }
+                    }
+                })
+
+            }
+            else{
+                console.log('Numbers is null');
+                io.emit('finish', true);
+            }
         }
     })
 })
