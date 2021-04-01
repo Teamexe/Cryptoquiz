@@ -555,3 +555,18 @@ a span:nth-child(2) {
   width: 150px;
   margin-bottom: 40px;
 }
+
+
+.khatam{
+  color: #4ec6ff;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-shadow: 0 0 16px black;
+}
+
+.khatam img{
+  transform: scale(1.2)
+}
+
+

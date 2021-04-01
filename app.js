@@ -239,10 +239,10 @@ io.on('connect',socket=>{
         .then((data)=>{
             if(data.length==4){
                 const myObj = {
-                    ques1:data[0].ques,
-                    ques2:data[1].ques,
-                    ques3:data[2].ques,
-                    ques4:data[3].ques,
+                    ques1:{ques: data[0].ques, title: data[0].title},
+                    ques2:{ques: data[1].ques, title: data[1].title},
+                    ques3:{ques: data[2].ques, title: data[2].title},
+                    ques4:{ques: data[3].ques, title: data[3].title},
                     roundNumber,
                 }
                 io.emit('question',myObj);
@@ -251,10 +251,10 @@ io.on('connect',socket=>{
                 roundNumber = -1;
                 numbers = null;
                 const obj = {
-                    ques1: null,
-                    ques2: null,
-                    ques3: null,
-                    ques4: null,
+                    ques1:{ques: null, title: null},
+                    ques2:{ques: null, title: null},
+                    ques3:{ques: null, title: null},
+                    ques4:{ques: null, title: null},
                     roundNumber:-1
                 }
                 io.emit('question',obj);

@@ -8,6 +8,9 @@ module.exports = (mongoose)=>{
             type: String,
             required: true,
         },
+        title:{
+            type: String,
+        },
         ans:{
             type:Number,
             required: true,

@@ -82,8 +82,10 @@ left: 0;">
   </div>
   <div class="c-submission" id="quiz-end">
     <div class="center">
-      <h2><span style="color: blue;">
-          <!--<i class="fa fa-times mx-3"></i>--> <img class="correct-sol" style="display: block;" src="Assets/imgs/finish.png" alt="">Quiz has ended.
+      <h2><span class="khatam">
+          <!--<i class="fa fa-times mx-3"></i>--> 
+          <img class="correct-sol" style="display: block;" src="Assets/imgs/finish.png" alt="">
+          Quiz has ended.
         </span>
       </h2>
     </div>
@@ -120,24 +122,24 @@ left: 0;">
         <div class="card card-color-0">
           <div class="border"></div>
           <img src="Assets/imgs/11.jpg" />
-          <h1>Question- 1 Title</h1>
+          <h1 id="t1">Question- 1 Title</h1>
         </div>
         <div class="card card-color-2">
           <div class="border"></div>
           <img src="Assets/imgs/3.jpg" />
-          <h1>Question- 3 Title</h1>
+          <h1 id="t2">Question- 3 Title</h1>
         </div>
       </div>
       <div class="card-column column-1">
         <div class="card card-color-1">
           <div class="border"></div>
           <img src="Assets/imgs/2.jpg" />
-          <h1>Question- 2 Title</h1>
+          <h1 id="t3">Question- 2 Title</h1>
         </div>
         <div class="card card-color-3">
           <div class="border"></div>
           <img src="Assets/imgs/44.jpg" />
-          <h1>Question- 4 Title</h1>
+          <h1 id="t4">Question- 4 Title</h1>
         </div>
       </div>
     </div>
@@ -189,10 +191,20 @@ left: 0;">
           document.body.style.overflowY = "visible";
       }
 
-      var q = [];
+      var q = [] , t=[];
       var i;
       var round=-2;
-      const populate = ({ ques1, ques2, ques3, ques4,roundNumber }) => {
+
+      
+      populateTitle = (t)=>{
+        document.querySelector("#t1").firstChild.nodeValue = t[0];
+        document.querySelector("#t2").firstChild.nodeValue = t[1];
+        document.querySelector("#t3").firstChild.nodeValue = t[2];
+        document.querySelector("#t4").firstChild.nodeValue = t[3];
+      }
+
+
+      const populate = ({ ques1, ques2, ques3, ques4 ,roundNumber }) => {
         // Ques1 = document.querySelector('#q1').firstChild
         // Ques2 = document.querySelector('#q2').firstChild
         // Ques3 = document.querySelector('#q3').firstChild
@@ -202,15 +214,21 @@ left: 0;">
         // Ques3.nodeValue = ques3;
         // Ques4.nodeValue = ques4;
         i = 0
-        q[0] = ques1;
-        q[1] = ques2;
-        q[2] = ques3;
-        q[3] = ques4;
+        q[0] = ques1.ques;
+        q[1] = ques2.ques;
+        q[2] = ques3.ques;
+        q[3] = ques4.ques;
+        t[0] = ques1.title;
+        t[1] = ques2.title;
+        t[2] = ques3.title;
+        t[3] = ques4.title;
         round = roundNumber;
         document.querySelector('#round').firstChild.nodeValue = `Round ${roundNumber+1}/10`;
-
+        populateTitle(t);
         // console.log({ ques1, ques2, ques3, ques4 })
       }
+
+      
 
       const submitButton = document.querySelector('#submitAnswer')
       const socket = io();
