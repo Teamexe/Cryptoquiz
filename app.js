@@ -224,6 +224,7 @@ const server = app.listen(port,()=>{
 
 numbers = [0,1,2,3]; //Initially display first four questions. Later change to question Numbers which are currently live in the quiz
 
+let roundNumber = 0;
 let index = 0;
 
 //Socket io logic
@@ -236,13 +237,13 @@ io.on('connect',socket=>{
     renderQuestions = (questionNumbers)=>{
         Question.find({quesNo:{$in:questionNumbers}})
         .then((data)=>{
-            console.log(data)
             if(data.length==4){
                 const myObj = {
                     ques1:data[0].ques,
                     ques2:data[1].ques,
                     ques3:data[2].ques,
                     ques4:data[3].ques,
+                    roundNumber,
                 }
                 io.emit('question',myObj);
             }
@@ -268,7 +269,6 @@ io.on('connect',socket=>{
             if(numbers!=null){
                 Question.find({quesNo:{$in:numbers}}) //check to see if further questions dont exist
                 .then((foundAnswers)=>{
-                    console.log(foundAnswers)
                     if(foundAnswers.length>0){
                         let flag = true;
                         for(var i=0;i<foundAnswers.length;i++){
@@ -278,6 +278,7 @@ io.on('connect',socket=>{
                         }
                         if(flag){
                             numbers = numbers.map(x=> x+=4)
+                            roundNumber++;
                             index++;
                             renderQuestions(numbers);
                             Player.findOne({email:data.identity})

@@ -190,7 +190,7 @@ left: 0;">
 
       var q = [];
       var i;
-      const populate = ({ ques1, ques2, ques3, ques4 }) => {
+      const populate = ({ ques1, ques2, ques3, ques4,roundNumber }) => {
         // Ques1 = document.querySelector('#q1').firstChild
         // Ques2 = document.querySelector('#q2').firstChild
         // Ques3 = document.querySelector('#q3').firstChild
@@ -204,6 +204,7 @@ left: 0;">
         q[1] = ques2;
         q[2] = ques3;
         q[3] = ques4;
+        console.log(roundNumber);
 
         // console.log({ ques1, ques2, ques3, ques4 })
       }
