@@ -75,7 +75,15 @@ left: 0;">
   <div class="c-submission" id="others-submission">
     <div class="center">
       <h2><span style="color: orange;">
-          <!--<i class="fa fa-times mx-3"></i>--> <i style="display: block; ;font-size: 125px;color: white;padding-bottom: 20px;" class="fa fa-clock-o green mx-4"></i>Someone else submitted before you :(
+          <!--<i class="fa fa-times mx-3"></i>--> <img class="correct-sol" style="display: block;" src="Assets/imgs/clock.png" alt="">Someone else submitted before you :(
+        </span>
+      </h2>
+    </div>
+  </div>
+  <div class="c-submission" id="quiz-end">
+    <div class="center">
+      <h2><span style="color: blue;">
+          <!--<i class="fa fa-times mx-3"></i>--> <i style="display: block; ;font-size: 125px;color: white;padding-bottom: 20px;" class="fa fa-clock-o green mx-4"></i>Quiz has ended.
         </span>
       </h2>
     </div>
@@ -173,7 +181,7 @@ left: 0;">
     <script src="/socket.io/socket.io.js"></script>
     <script>
       function popnext(a){
-        console.log('abc');
+        // console.log('abc');
         document.getElementById('questions').style.visibility = 'visible';
           a.style.visibility = "hidden";
           // document.getElementsByClassName("navigation-bar")[0].style.backgroundColor = "transparent";
@@ -233,7 +241,7 @@ left: 0;">
           a = document.getElementById("incorrect-submission");
           a.style.visibility = "visible";
         }
-        setTimeout(() => {  popnext(a); }, 2000);
+        setTimeout(() => {  popnext(a); }, 5000);
       })
 
       socket.on('elseSubmission', () => { //Listening for others submissions
@@ -249,8 +257,14 @@ left: 0;">
       
       socket.on('finish',data=>{
         if(data){
+          setTimeout(()=>{
           console.log("Finished")
-        }
+          let a = document.getElementById("quiz-end");
+          a.style.visibility = "visible";
+          document.getElementById('questions').style.visibility = 'hidden';
+          document.body.style.overflowY = "hidden";
+          window.scrollTo(0,0);
+        }, 5500);}
       })
 
       // listing vars here so they're in the global scope
