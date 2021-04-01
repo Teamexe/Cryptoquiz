@@ -332,7 +332,6 @@ io.on('connect',socket=>{
                         }
                     }
                 })
-
             }
             else{
                 console.log('Numbers is null');
