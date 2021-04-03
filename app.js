@@ -374,3 +374,8 @@ app.get("/cryptoboard",(req,res)=>{
             console.log(err)
         })
 });
+
+//Test routes:
+app.get("/verification",(req,res)=>{
+    res.render("verification"); 
+})
