@@ -48,7 +48,7 @@ var mailer = nodemailer.createTransport(sgTransport({
     }
 }));
 
-mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{console.log("DB connected")}).catch(err=>console.log(err));
 
 //Get requests
 app.get("/",(req,res)=>{
@@ -69,7 +69,7 @@ app.get("/login",(req,res)=>{
 })
 
 app.get("/register",(req,res)=>{
-    res.render("register",{csrfToken: req.csrfToken()})
+    res.render("register",{csrfToken: req.csrfToken(), error: req.flash('nithid')})
 })
 
 app.get("/quiz",(req,res)=>{
@@ -180,7 +180,8 @@ app.post('/register', (req,res)=>{
             console.log(err)
         })
     }else{
-        res.send('Use your nith id')
+        req.flash('nithid','Use your nith id');
+        res.redirect('/register')
     }
 })
 
@@ -334,6 +335,9 @@ io.on('connect',socket=>{
                                         console.log(err)
                                     })
                                 }
+                                else{
+                                    //User not found who gave the correct submission
+                                }
                             })
                             .catch(err=> console.log(err))
                         }
@@ -341,6 +345,12 @@ io.on('connect',socket=>{
                             socket.emit('Submission',false);
                         }
                     }
+                    else{
+                        //We didn't find questions
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err)
                 })
             }
             else{

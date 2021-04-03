@@ -23,6 +23,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/covid19.css">
     <script type="text/javascript" src="/js/script.js"></script>
+    <style>
+      .err{
+        border: 1px solid rgb(46, 46, 46);
+      padding: 5px 18px;
+      border-radius: 10px;
+      
+      }
+    </style>
 </head>
 
 <body>
@@ -40,6 +48,11 @@
           </span>
         </div>
         <form class="login100-form validate-form" action="/register" method="POST">
+          <% if(error) { %>
+            <p class="err">
+              <%= error %>
+            </p>
+            <% } %>  
           <div class="wrap-input100 validate-input m-b-26" >
             <label class="label-input100" for="name">Name</label>
             <input
