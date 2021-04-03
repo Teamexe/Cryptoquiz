@@ -49,10 +49,12 @@
         </div>
         <form class="login100-form validate-form" action="/register" method="POST">
           <% if(error) { %>
-            <p class="err">
+            <div class="mb-3">
+            <p class="err"  style="color:red;background: #ffcccc57;">
               <%= error %>
             </p>
-            <% } %>  
+          </div>
+            <% } %>
           <div class="wrap-input100 validate-input m-b-26" >
             <label class="label-input100" for="name">Name</label>
             <input
