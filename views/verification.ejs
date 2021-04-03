@@ -1,12 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,600italic,300italic,400italic,300,700italic,800italic,800"
+    rel="stylesheet" type="text/css" />
+  <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" media="all"
+    rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/b68197f8e1.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="CSS/quiz.css">
+  <link rel="stylesheet" href="CSS/main.css">
+  <link rel="stylesheet" href="CSS/index.css">
+  <link rel="stylesheet" href="CSS/util.css">
+  <link rel="stylesheet" href="CSS/questioncard.css">
+  <!-- <script src="JS/qc.js"></script> -->
+  <title>Account Verified</title>
 </head>
-<body>
-    Hi!
-</body>
+
+<body style="background-attachment: fixed;    background: black;">
+
+  <video playsinline="" autoplay="" muted="" loop="" id="bgvid" style="object-fit: cover;
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+z-index: -1;
+opacity: .5;
+left: 0;">
+    <source src="Assets/imgs/bgvideo.mp4" type="video/mp4">
+  </video>
+  <div class="verified">
+    <div style="background-color: #00000052;" class="center">
+      <h2><span style="color: #0ed678;">
+        <img class="correct-sol" style="display: block;" src="Assets/imgs/check.png" alt="">
+          Your account has been verified.
+          <br>
+          <div style="font-size: 16px; margin-top: 15px;color: white;" class="red">
+            <a class="loginlink" href="/login">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                login</a>
+          </div>
+        </span>
+      </h2>
+    </div>
+  </div>
+
+    <!--Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"></script>
+    <!-- <script src="JS/base.js"></script> -->
+    <!-- <script type="text/javascript" src="JS/quiz.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+  </body>
 </html>
