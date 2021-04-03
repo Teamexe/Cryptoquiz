@@ -752,6 +752,10 @@ nav .menu .menu_icon:hover .icon:after {
   font-size: 15px;
 }
 
+.rules-ol li{
+  list-style-type: unset;
+}
+
 .arrow{
   transform: translate(0px, -1px);
 }
