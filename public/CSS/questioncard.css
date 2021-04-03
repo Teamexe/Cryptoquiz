@@ -201,6 +201,7 @@
   }
   
   .cover {
+    z-index: 1001;
     transition: transform 300ms ease-in-out;
   }
   
@@ -217,6 +218,7 @@
     pointer-events: all;
     transition-delay: 1000ms;
     padding-top: 100px;
+    z-index: 1002;
   }
   
   /* 
