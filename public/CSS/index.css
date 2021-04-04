@@ -539,7 +539,7 @@ nav .menu .menu_icon:hover .icon:after {
 }
 @media screen and (max-width: 991px) {
   .wrapper .container .p404 {
-    font-size: 80px;
+    font-size: 65px;
   }
 }
 @keyframes anime404 {
