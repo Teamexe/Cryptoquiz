@@ -20,6 +20,7 @@ const app = express();
 
 //Models
 const Player = require("./models/Player")(mongoose);
+const Time = require('./models/time')(mongoose);
 
 const MONGO_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_USER_PASSWORD}@cluster0.ezyqv.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 
@@ -46,6 +47,10 @@ app.use(csrfProtection);
 
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{console.log("DB connected")}).catch(err=>console.log(err));
 
+
+
+
+
 //Get requests
 app.get("/",(req,res)=>{
     res.render('index',{
@@ -70,23 +75,26 @@ app.get("/register",(req,res)=>{
 
 app.get("/quiz",(req,res)=>{
     //Set time accordingly
-    if(Date.now()< new Date("2021-04-04T16:30:00")){
-        res.render('notStarted');
-        console.log(Date.now())
-    }
-    else{
-        if(req.session.isLoggedIn){
-            res.render("quiz",{
-                name:req.session.player.playerName,
-                identity:req.session.player.email,
-                csrfToken: req.csrfToken()
-            });
-        }
-        else{
-            req.flash('error3','Please login first');
-            res.redirect('/login');
-        }
-    }
+    Time.findOne({})
+        .then((result)=>{
+            if(Date.now()< new Date(result.timestamp)){
+                res.render('notStarted');
+            }
+            else{
+                if(req.session.isLoggedIn){
+                    res.render("quiz",{
+                        name:req.session.player.playerName,
+                        identity:req.session.player.email,
+                        csrfToken: req.csrfToken()
+                    });
+                }
+                else{
+                    req.flash('error3','Please login first');
+                    res.redirect('/login');
+                }
+            }
+        })
+    
 })
 
 //Post   requests
@@ -246,7 +254,6 @@ io.on('connect',socket=>{
     renderQuestions = (questionNumbers)=>{
         Question.find({quesNo:{$in:questionNumbers}})
         .then((data)=>{
-            console.log(data)
             if(data.length==4){
                 const myObj = {
                     ques1:{ques: data[0].ques, title: data[0].title},
@@ -275,7 +282,6 @@ io.on('connect',socket=>{
             console.log(err);
         })
     }
-    console.log(numbers);
     renderQuestions(numbers);
     //Listening for answers
     socket.on('answer',data=>{
@@ -300,7 +306,6 @@ io.on('connect',socket=>{
                             numbers = numbers.map(x=> x+=4)
                             roundNumber++;
                             index++;
-                            console.log(numbers);
                             renderQuestions(numbers);
                             Player.findOne({email:data.identity})
                             .then((foundUser)=>{
@@ -382,21 +387,24 @@ app.get("/developers",(req,res)=>{
     });
 });
 app.get("/cryptoboard",(req,res)=>{
-    if(Date.now()< new Date("2021-04-04T16:30:00")){
-        res.render('notStarted');
-    }
-    else{
-        BlockModel.find({})
-            .then((result)=>{
-                res.render("leaderboard",{
-                    name:req.session.player.playerName,
-                    identity:req.session.player.email,
-                    csrfToken: req.csrfToken(),
-                    answer: result
-                });
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-    }
+    Time.findOne({})
+        .then((result)=>{
+            if(Date.now()< new Date(result.timestamp)){
+                res.render('notStarted');
+            }
+            else{
+                BlockModel.find({})
+                    .then((result)=>{
+                        res.render("leaderboard",{
+                            name:req.session.player.playerName,
+                            identity:req.session.player.email,
+                            csrfToken: req.csrfToken(),
+                            answer: result
+                        });
+                    })
+                    .catch(err=>{
+                        console.log(err)
+                    })
+            }
+        })
 });
