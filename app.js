@@ -42,17 +42,7 @@ app.use(session({
 app.use(flash());
 app.use(csrfProtection);
 
-const mailer = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, 
-    pool:true,
-    maxMessages: 10000,
-    auth:{
-        user: process.env.MAILER,
-        pass:process.env.MAILER_PASS,
-    }
-})
+
 
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{console.log("DB connected")}).catch(err=>console.log(err));
 
@@ -80,8 +70,9 @@ app.get("/register",(req,res)=>{
 
 app.get("/quiz",(req,res)=>{
     //Set time accordingly
-    if(Date.now()< new Date("2021-04-04T22:01:00")){
+    if(Date.now()< new Date("2021-04-04T16:30:00")){
         res.render('notStarted');
+        console.log(Date.now())
     }
     else{
         if(req.session.isLoggedIn){
@@ -391,7 +382,7 @@ app.get("/developers",(req,res)=>{
     });
 });
 app.get("/cryptoboard",(req,res)=>{
-    if(Date.now()< new Date("2021-04-04T22:01:00")){
+    if(Date.now()< new Date("2021-04-04T16:30:00")){
         res.render('notStarted');
     }
     else{
