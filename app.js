@@ -161,7 +161,7 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "https://cryptonith.herokuapp.com/verify/${token}"> Verify your account</a> `
+                                    <p><a href = "http://bit.ly/teamexe-cryptoquiz/verify/${token}"> Verify your account</a> `
                                 })
                             })
                             .catch((err)=>{
@@ -202,7 +202,7 @@ app.get('/verify/:token',(req,res)=>{
             User.verified = true;
             User.save()
             .then(()=>{
-                res.send('Your account has been verified')
+                res.render('verification');
             })
             .catch((err)=>{
                 console.log(err);
@@ -384,8 +384,3 @@ app.get("/cryptoboard",(req,res)=>{
             console.log(err)
         })
 });
-
-//Test routes:
-app.get("/verification",(req,res)=>{
-    res.render("verification"); 
-})
