@@ -15,14 +15,9 @@
     <link href="/CSS/main.css" rel="stylesheet" type="text/css">
     <link href="/CSS/util.css" rel="stylesheet" type="text/css">
     <link href="/CSS/style.css" rel="stylesheet" type="text/css">
-    <script src="/js/jquery.js"></script>
-    <script src="/js/jquery.autocomplete.min.js"></script>
-    <script src="/js/three.min.js"></script>
-    <script src="/js/gio.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/covid19.css">
-    <script type="text/javascript" src="/js/script.js"></script>
     <style>
       .err{
         border: 1px solid rgb(46, 46, 46);
@@ -48,7 +43,8 @@
           </span>
         </div>
         <form class="login100-form validate-form" action="/register" method="POST">
-          <% if(error) { %>
+          <% if(error.length > 0) { %>
+            <%=console.log("abc")%>
             <div class="mb-3">
             <p class="err"  style="color:red;background: #ffcccc57;">
               <%= error %>
@@ -101,7 +97,7 @@
             Register
           </button>
         </form>
-        <p class="choice">Have An Account? <a class="reg_choice" href="/login">Login</a></p>
+        <p style="text-align: left;padding-top: 20px;" class="choice">Have An Account? <a class="reg_choice" href="/login">Login</a></p>
       </div>
     </div>
   </div>

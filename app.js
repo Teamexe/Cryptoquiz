@@ -251,9 +251,11 @@ const BlockModel = require('./models/blockModel')(mongoose)
 
 io.on('connect',socket=>{
     console.log("Connection made");
+
     renderQuestions = (questionNumbers)=>{
         Question.find({quesNo:{$in:questionNumbers}})
         .then((data)=>{
+            console.log(data)
             if(data.length==4){
                 const myObj = {
                     ques1:{ques: data[0].ques, title: data[0].title},
@@ -282,6 +284,7 @@ io.on('connect',socket=>{
             console.log(err);
         })
     }
+    console.log(numbers);
     renderQuestions(numbers);
     //Listening for answers
     socket.on('answer',data=>{
@@ -306,6 +309,7 @@ io.on('connect',socket=>{
                             numbers = numbers.map(x=> x+=4)
                             roundNumber++;
                             index++;
+                            console.log(numbers);
                             renderQuestions(numbers);
                             Player.findOne({email:data.identity})
                             .then((foundUser)=>{

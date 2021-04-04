@@ -507,6 +507,10 @@ input.input100 {
   .wrap-login100{
     margin: 0;
   }
+  
+.container-login100{
+  padding-left: 0;
+}
 }
 
 @media (max-width: 480px) {

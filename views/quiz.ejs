@@ -124,17 +124,17 @@ left: 0;">
           <img src="Assets/imgs/11.jpg" />
           <h1 id="t1">Question- 1 Title</h1>
         </div>
-        <div class="card card-color-2">
-          <div class="border"></div>
-          <img src="Assets/imgs/3.jpg" />
-          <h1 id="t2">Question- 3 Title</h1>
-        </div>
-      </div>
-      <div class="card-column column-1">
         <div class="card card-color-1">
           <div class="border"></div>
           <img src="Assets/imgs/2.jpg" />
-          <h1 id="t3">Question- 2 Title</h1>
+          <h1 id="t2">Question- 2 Title</h1>
+        </div>
+      </div>
+      <div class="card-column column-1">
+        <div class="card card-color-2">
+          <div class="border"></div>
+          <img src="Assets/imgs/3.jpg" />
+          <h1 id="t3">Question- 3 Title</h1>
         </div>
         <div class="card card-color-3">
           <div class="border"></div>
@@ -258,6 +258,8 @@ left: 0;">
           console.log('correct submission');
           a = document.getElementById("correct-submission");
           a.style.visibility = "visible";
+          document.querySelector('#exampleInputNumber').value = "";
+
         } else {
           console.log('Wrong Submission');
           a = document.getElementById("incorrect-submission");
@@ -274,6 +276,7 @@ left: 0;">
           a.style.visibility = "visible";
           document.getElementById('questions').style.visibility = 'hidden';
           document.body.style.overflowY = "hidden";
+          document.querySelector('#exampleInputNumber').value = "";
           window.scrollTo(0,0);
           setTimeout(() => {  popnext(a); }, 5000);
           flag1 =0;

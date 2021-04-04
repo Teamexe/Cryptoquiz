@@ -48,6 +48,11 @@ let imgObject = [
         link: "https://www.linkedin.com/in/vasvi-sood-091aa319b"
     },
     {
+      img:  "https://res.cloudinary.com/dvauvcikd/image/upload/v1614941598/WhatsApp_Image_2021-03-05_at_4.19.29_PM_ahptzv.jpg",
+      name : "Mrigank Anand",
+      link : "https://www.linkedin.com/in/mrigankanand/"
+    },
+    {
         img:  "https://i.imgur.com/7sEHXUQ.jpeg",
         name : "Manav Doda",
         link : "https://www.linkedin.com/in/manav-doda/"
