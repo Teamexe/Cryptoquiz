@@ -161,7 +161,7 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "https://cryptonith.herokuapp.com/verify/${token}"> Verify your account</a> `
+                                    <p><a href = "http://bit.ly/teamexe-cryptoquiz/verify/${token}"> Verify your account</a> `
                                 })
                             })
                             .catch((err)=>{
