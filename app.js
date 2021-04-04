@@ -5,7 +5,6 @@ const crypto = require('crypto')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const nodemailer = require('nodemailer')
-const sgTransport = require('nodemailer-sendgrid-transport');
 const bcrypt = require('bcrypt')
 const flash = require('connect-flash')
               require('dotenv').config()
@@ -42,11 +41,17 @@ app.use(session({
 app.use(flash());
 app.use(csrfProtection);
 
-var mailer = nodemailer.createTransport(sgTransport({
+const mailer = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, 
+    pool:true,
+    maxMessages: 10000,
     auth:{
-        api_key:process.env.SENDGRID_KEY
+        user: process.env.MAILER,
+        pass:process.env.MAILER_PASS,
     }
-}));
+})
 
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{console.log("DB connected")}).catch(err=>console.log(err));
 
@@ -73,16 +78,22 @@ app.get("/register",(req,res)=>{
 })
 
 app.get("/quiz",(req,res)=>{
-    if(req.session.isLoggedIn){
-        res.render("quiz",{
-            name:req.session.player.playerName,
-            identity:req.session.player.email,
-            csrfToken: req.csrfToken()
-        });
+    //Set time accordingly
+    if(Date.now()< new Date("2021-04-04T22:01:00")){
+        res.render('notStarted');
     }
     else{
-        req.flash('error3','Please login first');
-        res.redirect('/login');
+        if(req.session.isLoggedIn){
+            res.render("quiz",{
+                name:req.session.player.playerName,
+                identity:req.session.player.email,
+                csrfToken: req.csrfToken()
+            });
+        }
+        else{
+            req.flash('error3','Please login first');
+            res.redirect('/login');
+        }
     }
 })
 
@@ -101,7 +112,7 @@ app.post('/login', (req,res)=>{
                     }else{
                         req.session.isLoggedIn = true;
                         req.session.player = User;
-                        res.redirect('/quiz');
+                        res.redirect('/');
                     }
                 })
                 .catch((err)=>{
@@ -151,7 +162,6 @@ app.post('/register', (req,res)=>{
                                 res.redirect('/login')
                                 mailer.sendMail({
                                     to:req.body.email,
-                                    from: 'cryptoquiznith@gmail.com',
                                     subject: 'Verification of your account for Cryptoquiz',
                                     html: `
                                     <p>Get ready for a mathematical roller coaster ride as Team .Exe brings to you Crytoquiz, 
@@ -161,7 +171,12 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "http://bit.ly/teamexe-cryptoquiz/verify/${token}"> Verify your account</a> `
+                                    <p><a href = "http://teamexe.cryptoquiz.tech:3000/verify/${token}"> Verify your account</a>`
+                                }, (err)=>{
+                                    if(err){
+                                        console.log(err)
+                                        //What else to do if error occured
+                                    }
                                 })
                             })
                             .catch((err)=>{
@@ -371,16 +386,21 @@ app.get("/developers",(req,res)=>{
     });
 });
 app.get("/cryptoboard",(req,res)=>{
-    BlockModel.find({})
-        .then((result)=>{
-            res.render("leaderboard",{
-                name:req.session.player.playerName,
-                identity:req.session.player.email,
-                csrfToken: req.csrfToken(),
-                answer: result
-            });
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+    if(Date.now()< new Date("2021-04-04T22:01:00")){
+        res.render('notStarted');
+    }
+    else{
+        BlockModel.find({})
+            .then((result)=>{
+                res.render("leaderboard",{
+                    name:req.session.player.playerName,
+                    identity:req.session.player.email,
+                    csrfToken: req.csrfToken(),
+                    answer: result
+                });
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
 });
