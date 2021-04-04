@@ -171,12 +171,9 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-<<<<<<< HEAD
                                     <p><a href = "http://teamexe.cryptoquiz.tech:3000/verify/${token}"> Verify your account</a>
+                                    <p><a href = "http:/localhost:3000/verify/${token}"> Verify your account</a>
                                     `
-=======
-                                    <p><a href = "http://teamexe.cryptoquiz.tech:3000/verify/${token}"> Verify your account</a>`
->>>>>>> c8a16e1d8efa8cc3be00704d17710ac3defc7267
                                 }, (err)=>{
                                     if(err){
                                         console.log(err)
