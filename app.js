@@ -161,7 +161,7 @@ app.post('/register', (req,res)=>{
                             .then(()=>{
                                 req.flash('success','Please click the link in the your email inbox to verify your account');
                                 res.redirect('/login')
-                                axios.post('http://678bdd8fb7f7.ngrok.io/sendMail/?format=json', {
+                                axios.post(process.env.ENDPOINT, {
                                     email: req.body.email,
                                     message: `<p>Get ready for a mathematical roller coaster ride as Team .Exe brings to you Crytoquiz, 
                                     an online event to test both your speed and accuracy. There's something more, 
