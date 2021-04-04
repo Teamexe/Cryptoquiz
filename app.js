@@ -202,7 +202,7 @@ app.get('/verify/:token',(req,res)=>{
             User.verified = true;
             User.save()
             .then(()=>{
-                res.send('Your account has been verified')
+                res.render('verification');
             })
             .catch((err)=>{
                 console.log(err);
@@ -384,8 +384,3 @@ app.get("/cryptoboard",(req,res)=>{
             console.log(err)
         })
 });
-
-//Test routes:
-app.get("/verification",(req,res)=>{
-    res.render("verification"); 
-})
