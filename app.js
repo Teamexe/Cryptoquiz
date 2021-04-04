@@ -12,6 +12,7 @@ const csrf = require('csurf')
 const mongoStore = require('connect-mongodb-session')(session)
 const socketio = require('socket.io')
 const hash = require('object-hash');
+const axios = require('axios').default;
 
 const csrfProtection = csrf({cookie:true});
 
@@ -160,26 +161,24 @@ app.post('/register', (req,res)=>{
                             .then(()=>{
                                 req.flash('success','Please click the link in the your email inbox to verify your account');
                                 res.redirect('/login')
-                                mailer.sendMail({
-                                    to:req.body.email,
-                                    subject: 'Verification of your account for Cryptoquiz',
-                                    html: `
-                                    <p>Get ready for a mathematical roller coaster ride as Team .Exe brings to you Crytoquiz, 
+                                axios.post('http://678bdd8fb7f7.ngrok.io/sendMail/?format=json', {
+                                    email: req.body.email,
+                                    message: `<p>Get ready for a mathematical roller coaster ride as Team .Exe brings to you Crytoquiz, 
                                     an online event to test both your speed and accuracy. There's something more, 
                                     the quiz is hosted on a decentralised website and only the quickest submission will
-                                     make its place on the CryptoBoard. So tighten up your belts, and race your brain for the solution hunt!</p>
+                                    make its place on the CryptoBoard. So tighten up your belts, and race your brain for the solution hunt!</p>
 
-                                     <p>We are glad you're here </p>
+                                    <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "http://teamexe.cryptoquiz.tech:3000/verify/${token}"> Verify your account</a>
-                                    <p><a href = "http:/localhost:3000/verify/${token}"> Verify your account</a>
+                                    <p><a href = 'http://teamexe.cryptoquiz.tech:3000/verify/${token}'> Verify your account</a>
                                     `
-                                }, (err)=>{
-                                    if(err){
-                                        console.log(err)
-                                        //What else to do if error occured
-                                    }
                                 })
+                                    .then( response=> {
+                                        console.log(response);
+                                    })
+                                    .catch( error=> {
+                                        console.log(error);
+                                    })
                             })
                             .catch((err)=>{
                                 console.log(err)
