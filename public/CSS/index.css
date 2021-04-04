@@ -184,7 +184,7 @@ body {
   padding: 0;
   height: auto;
   font-family: "Barlow", sans-serif;
-  /* background: #7aaae7; */
+  background: #041428;
   background: url("/Assets/imgs/bgc.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -263,7 +263,7 @@ nav .menu .menu_links {
 nav .menu .menu_links:hover {
   opacity: 1;
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   nav .menu .menu_links {
     display: none;
   }
@@ -312,7 +312,7 @@ nav .menu .menu_icon {
   align-items: center;
   cursor: pointer;
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   nav .menu .menu_icon {
     display: flex;
   }
@@ -429,7 +429,7 @@ nav .menu .menu_icon:hover .icon:after {
     width: 10%;
   }
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   .wrapper .container .one,
   .wrapper .container .two,
   .wrapper .container .three,
@@ -472,7 +472,7 @@ nav .menu .menu_icon:hover .icon:after {
     transform: translateY(40px);
   }
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   .wrapper .container .text {
     min-height: 400px;
     height: 80%;
@@ -492,7 +492,7 @@ nav .menu .menu_icon:hover .icon:after {
   left: 50%;
   transform: translateX(-50%);
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   .wrapper .container .text article {
     width: 100%;
   }
@@ -537,7 +537,7 @@ nav .menu .menu_icon:hover .icon:after {
   animation: anime404 0.6s cubic-bezier(0.3, 0.8, 1, 1.05) both;
   animation-delay: 1.2s;
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   .wrapper .container .p404 {
     font-size: 100px;
   }
@@ -577,7 +577,7 @@ nav .menu .menu_icon:hover .icon:after {
     height: 0;
   }
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   .wrapper .container .circle:before {
     width: 400px;
     height: 400px;
@@ -593,7 +593,7 @@ nav .menu .menu_icon:hover .icon:after {
   box-shadow: inset 5px 20px 40px rgba(54, 24, 79, 0.25), inset 5px 0px 5px rgba(50, 36, 62, 0.3), inset 5px 5px 20px rgba(50, 36, 62, 0.25), 2px 2px 5px rgba(255, 255, 255, 0.2);
   animation: circle 0.8s 0.4s cubic-bezier(1, 0.06, 0.25, 1) backwards;
 }
-@media screen and (max-width: 799px) {
+@media screen and (max-width: 991px) {
   .wrapper .container .one .content:before {
     width: 300px;
     height: 300px;
