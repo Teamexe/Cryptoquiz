@@ -9,7 +9,7 @@ services:
     links:
       - mongo
   mongo:
-    container_name: mongo
+    container_name: cryptoquiz_mongo
     image: mongo
     volumes:
       - ./data:/data/db
