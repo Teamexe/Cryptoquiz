@@ -5,7 +5,6 @@ const crypto = require('crypto')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const nodemailer = require('nodemailer')
-const sgTransport = require('nodemailer-sendgrid-transport');
 const bcrypt = require('bcrypt')
 const flash = require('connect-flash')
               require('dotenv').config()
@@ -42,11 +41,17 @@ app.use(session({
 app.use(flash());
 app.use(csrfProtection);
 
-var mailer = nodemailer.createTransport(sgTransport({
+const mailer = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, 
+    pool:true,
+    maxMessages: 10000,
     auth:{
-        api_key:process.env.SENDGRID_KEY
+        user: process.env.MAILER,
+        pass:process.env.MAILER_PASS,
     }
-}));
+})
 
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{console.log("DB connected")}).catch(err=>console.log(err));
 
@@ -151,7 +156,6 @@ app.post('/register', (req,res)=>{
                                 res.redirect('/login')
                                 mailer.sendMail({
                                     to:req.body.email,
-                                    from: 'cryptoquiznith@gmail.com',
                                     subject: 'Verification of your account for Cryptoquiz',
                                     html: `
                                     <p>Get ready for a mathematical roller coaster ride as Team .Exe brings to you Crytoquiz, 
@@ -161,7 +165,12 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "http://bit.ly/teamexe-cryptoquiz/verify/${token}"> Verify your account</a> `
+                                    <p><a href = "http://bit.ly/teamexe-cryptoquiz/verify/${token}"> Verify your account</a>`
+                                }, (err)=>{
+                                    if(err){
+                                        console.log(err)
+                                        //What else to do if error occured
+                                    }
                                 })
                             })
                             .catch((err)=>{
