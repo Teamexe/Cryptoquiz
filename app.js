@@ -106,7 +106,7 @@ app.post('/login', (req,res)=>{
                     }else{
                         req.session.isLoggedIn = true;
                         req.session.player = User;
-                        res.redirect('/quiz');
+                        res.redirect('/');
                     }
                 })
                 .catch((err)=>{
