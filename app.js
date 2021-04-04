@@ -78,16 +78,22 @@ app.get("/register",(req,res)=>{
 })
 
 app.get("/quiz",(req,res)=>{
-    if(req.session.isLoggedIn){
-        res.render("quiz",{
-            name:req.session.player.playerName,
-            identity:req.session.player.email,
-            csrfToken: req.csrfToken()
-        });
+    //Set time accordingly
+    if(Date.now()< new Date("2021-04-04T22:01:00")){
+        res.render('notStarted');
     }
     else{
-        req.flash('error3','Please login first');
-        res.redirect('/login');
+        if(req.session.isLoggedIn){
+            res.render("quiz",{
+                name:req.session.player.playerName,
+                identity:req.session.player.email,
+                csrfToken: req.csrfToken()
+            });
+        }
+        else{
+            req.flash('error3','Please login first');
+            res.redirect('/login');
+        }
     }
 })
 
@@ -165,7 +171,7 @@ app.post('/register', (req,res)=>{
 
                                      <p>We are glad you're here </p>
                                     <p>To verify your account click here: 
-                                    <p><a href = "http://bit.ly/teamexe-cryptoquiz/verify/${token}"> Verify your account</a>`
+                                    <p><a href = "http://teamexe.cryptoquiz.tech:3000/verify/${token}"> Verify your account</a>`
                                 }, (err)=>{
                                     if(err){
                                         console.log(err)
@@ -380,16 +386,21 @@ app.get("/developers",(req,res)=>{
     });
 });
 app.get("/cryptoboard",(req,res)=>{
-    BlockModel.find({})
-        .then((result)=>{
-            res.render("leaderboard",{
-                name:req.session.player.playerName,
-                identity:req.session.player.email,
-                csrfToken: req.csrfToken(),
-                answer: result
-            });
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+    if(Date.now()< new Date("2021-04-04T22:01:00")){
+        res.render('notStarted');
+    }
+    else{
+        BlockModel.find({})
+            .then((result)=>{
+                res.render("leaderboard",{
+                    name:req.session.player.playerName,
+                    identity:req.session.player.email,
+                    csrfToken: req.csrfToken(),
+                    answer: result
+                });
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+    }
 });
